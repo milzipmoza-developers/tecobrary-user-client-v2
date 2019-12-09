@@ -55,3 +55,4 @@
 
 * UI 는 Sketch 로 디자인하고 Zeplin 으로 관리합니다.
 * [Zeplin 링크](https://zpl.io/bzRjOL4) 에서 UI 를 확인할 수 있습니다.
+* [Milzipmoza-Developers](https://join.slack.com/t/milzipmoza-developers/shared_invite/enQtODY0OTc2MzEyMjI4LTA3MzVkZTc1MDU3NzM5YjcxZDZjZWUzZGQ4M2Q1ZDIyNDIzM2Y4YjA0Y2YyMjNmM2I1MTVhMTkyZjNjM2MzYTI) 슬랙의 zeplin_alert 채널에서도 확인이 가능합니다.
