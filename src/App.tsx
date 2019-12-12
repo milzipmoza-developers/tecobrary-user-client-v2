@@ -1,22 +1,26 @@
 import * as React from 'react';
+import styled from 'styled-components'
+
 import './App.css';
+import Main from "./main/Main";
 
-import logo from './logo.svg';
+const Wrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backgroundColor: 'white'
+`;
 
-class App extends React.Component {
-  public render() {
+const App = () => {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
+        <div style={{width: '100vw', height: '100vh', position: 'relative', backgroundColor: '#ccc'}}>
+            <Wrapper>
+                <Main/>
+            </Wrapper>
+        </div>
     );
-  }
-}
+};
 
 export default App;
