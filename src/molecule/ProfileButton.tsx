@@ -12,10 +12,11 @@ const buttonStyle: CSSProperties = {
     borderRadius: '50%',
     boxShadow: '1px 1px 4px 0 rgba(0, 0, 0, 0.5)',
     justifyContent: 'center',
+    marginTop: '8px',
     width: 'fit-content',
 };
 
-const ProfileButton = ({loggedIn}: any) => {
+const ProfileButton = ({loggedIn, imgUrl}: any) => {
     const profileButtonClickHandler = (e: any) => {
         e.preventDefault();
         alert("profile button clicked")
@@ -34,13 +35,13 @@ const ProfileButton = ({loggedIn}: any) => {
 
     const userButton = (
         <div className='userIcon' onClick={userButtonClickHandler} style={iconStyle}>
-            <UserIcon imgUrl='https://avatars0.githubusercontent.com/u/52121827?s=460&v=4.png' width='55px' height='55px'/>
+            <UserIcon imgUrl={imgUrl} width='55px' height='55px'/>
         </div>
     );
 
     return (
         <div className='profileButton' style={buttonStyle}>
-            {loggedIn ? userButton : profileButton}
+            {(loggedIn || imgUrl) ? userButton : profileButton}
         </div>
     );
 };
