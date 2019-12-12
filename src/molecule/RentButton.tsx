@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     bottom: 0;
     height: 80px;
     width: 100%;
-    position: fixed;
+    position: absolute;
 `;
 
 const buttonStyle: CSSProperties = {

@@ -6,6 +6,7 @@ import Header from "../organism/Header";
 const Wrapper = styled.div`
     background-color: #ffffff;
     flex: 1;
+    position: relative;
 `;
 
 const Main = () => {
