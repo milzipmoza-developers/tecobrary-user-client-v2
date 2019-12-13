@@ -6,8 +6,7 @@ const TemplateBody: CSSProperties = {
     paddingBottom: '100px',
     paddingLeft: '25px',
     paddingRight: '25px',
-    paddingTop: '100px',
-    width: 'inherit',
+    paddingTop: '110px',
 };
 
 const Body = ({className, children}: any) => {
