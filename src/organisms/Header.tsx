@@ -1,7 +1,7 @@
 import * as React from "react";
 import {CSSProperties} from "react";
 import styled from "styled-components";
-import HeaderTitle from "../molecule/HeaderTitle";
+import HeaderTitle from "../molecules/HeaderTitle";
 import HeaderButton from "./HeaderButton";
 
 const Wrapper = styled.div`

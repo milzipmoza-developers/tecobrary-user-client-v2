@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import profile from './profile-user.svg';
+import profile from './assets/profile-user.svg';
 
 const notLoginIconStyle = (width: any, height: any) => ({
     borderRadius: '50%',

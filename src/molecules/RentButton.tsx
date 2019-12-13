@@ -1,6 +1,6 @@
 import * as React from "react";
 import {CSSProperties} from "react";
-import QrCodeIcon from "../atom/QrCodeIcon";
+import QrCodeIcon from "../atoms/QrCodeIcon";
 
 const textContainerStyle: CSSProperties = {
     alignItems: 'center',

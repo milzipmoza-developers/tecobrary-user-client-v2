@@ -1,6 +1,6 @@
 import * as React from "react";
 import {CSSProperties} from "react";
-import NotLoginIcon from '../atom/NotLoginIcon';
+import NotLoginIcon from '../atoms/NotLoginIcon';
 
 const iconStyle: CSSProperties = {
     height: '55px',

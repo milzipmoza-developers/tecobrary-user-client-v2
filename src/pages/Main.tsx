@@ -1,5 +1,5 @@
 import * as React from "react";
-import TitledCard from "../organism/TitledCard";
+import TitledCard from "../organisms/TitledCard";
 import DefaultTemplate from "../templates/DefaultTemplate";
 import SearchComponent from "../templates/SearchComponent";
 

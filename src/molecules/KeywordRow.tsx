@@ -1,5 +1,5 @@
 import * as React from "react";
-import KeywordElement from "../atom/KeywordElement";
+import KeywordElement from "../atoms/KeywordElement";
 
 const keywordRowStyle = {
     display: 'table-row'

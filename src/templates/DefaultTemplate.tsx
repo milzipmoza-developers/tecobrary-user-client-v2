@@ -1,9 +1,9 @@
 import * as React from "react";
 import {useState} from "react";
-import Body from 'src/organism/Body';
+import Body from 'src/organisms/Body';
 import styled from "styled-components";
-import Footer from "../organism/Footer";
-import Header from "../organism/Header";
+import Footer from "../organisms/Footer";
+import Header from "../organisms/Header";
 
 interface IProps {
     title: string;

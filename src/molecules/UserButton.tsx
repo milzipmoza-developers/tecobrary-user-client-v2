@@ -1,6 +1,6 @@
 import {CSSProperties} from "react";
 import * as React from "react";
-import UserIcon from "../atom/UserIcon";
+import UserIcon from "../atoms/UserIcon";
 
 const iconStyle: CSSProperties = {
     height: '55px',

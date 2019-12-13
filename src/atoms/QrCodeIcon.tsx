@@ -1,6 +1,6 @@
 import {CSSProperties} from "react";
 import * as React from 'react';
-import qrCode from './qr-code.svg';
+import qrCode from './assets/qr-code.svg';
 
 const qrCodeIconStyle: CSSProperties = {height: '24px', width: '24px'};
 

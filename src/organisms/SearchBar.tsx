@@ -1,8 +1,8 @@
 import * as React from "react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
-import SearchIcon from "../atom/SearchIcon";
-import SearchInput from "../atom/SearchInput";
+import SearchIcon from "../atoms/SearchIcon";
+import SearchInput from "../atoms/SearchInput";
 
 interface IProps {
     disabled: boolean;

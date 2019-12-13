@@ -1,6 +1,6 @@
 import * as React from "react";
 import {CSSProperties} from "react";
-import KeywordTable from "../molecule/KeywordTable";
+import KeywordTable from "../molecules/KeywordTable";
 
 interface IProps {
     keywords: any,

@@ -1,8 +1,8 @@
 import * as React from "react";
 import {useState} from "react";
-import DefaultCard from "../molecule/DefaultCard";
-import KeywordFrame from "../organism/KeywordFrame";
-import SearchBar from "../organism/SearchBar";
+import DefaultCard from "../molecules/DefaultCard";
+import KeywordFrame from "../organisms/KeywordFrame";
+import SearchBar from "../organisms/SearchBar";
 
 interface IProps {
     isSearchPage: boolean;

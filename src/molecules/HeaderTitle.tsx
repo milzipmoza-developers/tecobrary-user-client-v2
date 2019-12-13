@@ -1,6 +1,6 @@
 import * as React from 'react';
-import HeaderCalendar from "../atom/HeaderCalendar";
-import HeaderPageName from "../atom/HeaderPageName";
+import HeaderCalendar from "../atoms/HeaderCalendar";
+import HeaderPageName from "../atoms/HeaderPageName";
 
 const HeaderTitle = ({children}: any) => {
     return (

@@ -1,7 +1,7 @@
 import {CSSProperties} from "react";
 import * as React from "react";
 import styled from "styled-components";
-import RentButton from "../molecule/RentButton";
+import RentButton from "../molecules/RentButton";
 
 const Wrapper = styled.div`
     background-color: rgba( 255, 255, 255, 0 );
