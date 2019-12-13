@@ -15,11 +15,24 @@ const SearchTitleStyle: CSSProperties = {
     width: '20%',
 };
 
+const keywordFrameStyle:CSSProperties = {
+    marginTop: '8px',
+    overflow: 'auto',
+    paddingLeft: '8px',
+    paddingRight: '8px',
+    width: '100%',
+};
+
+const keywordTableStyle: CSSProperties = {
+    float: 'right',
+    width: '80%',
+};
+
 const KeywordFrame = (props: IProps) => {
     return (
-        <div style={{marginTop: '8px', paddingRight: '8px', paddingLeft: '8px', overflow: 'auto', width: '100%'}}>
+        <div className='keywordFrame' style={keywordFrameStyle}>
             <div style={SearchTitleStyle}>{props.children}</div>
-            <div style={{width: '80%', float: 'right'}}>
+            <div style={keywordTableStyle}>
                 <KeywordTable keywords={props.keywords}/>
             </div>
         </div>
