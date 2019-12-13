@@ -1,14 +1,13 @@
-import {CSSProperties} from "react";
 import * as React from "react";
+import {CSSProperties} from "react";
 import styled from "styled-components";
 import HeaderTitle from "../molecule/HeaderTitle";
-import ProfileButton from "../molecule/ProfileButton";
+import HeaderButton from "./HeaderButton";
 
 const Wrapper = styled.div`
     background-color: rgba( 255, 255, 255, 0.8 );
     top: 0;
     width: 100%;
-    position: absolute;
 `;
 
 const headerStyle: CSSProperties = {
@@ -35,7 +34,7 @@ const Header = ({loggedIn, imgUrl, children}: any) => {
                     <HeaderTitle>{children}</HeaderTitle>
                 </div>
                 <div className='profileButtonContainer' style={profileButtonStyle}>
-                    <ProfileButton loggedIn={loggedIn} imgUrl={imgUrl}/>
+                    <HeaderButton loggedIn={loggedIn} imgUrl={imgUrl}/>
                 </div>
             </div>
         </Wrapper>
