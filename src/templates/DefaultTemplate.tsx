@@ -5,6 +5,13 @@ import styled from "styled-components";
 import Footer from "../organism/Footer";
 import Header from "../organism/Header";
 
+interface IProps {
+    title: string;
+    loggedIn: boolean;
+    imgUrl?: string;
+    children?: any;
+}
+
 const Wrapper = styled.div`
     background-color: #ffffff;
     flex: 1;
@@ -16,9 +23,9 @@ const Wrapper = styled.div`
     min-width: 250px;
 `;
 
-const DefaultTemplate = ({title, loggedIn, imgUrl, children}: any) => {
-    const [login] = useState(loggedIn);
-    const [img] = useState(imgUrl);
+const DefaultTemplate = (props: IProps) => {
+    const [login] = useState(props.loggedIn);
+    const [img] = useState(props.imgUrl);
 
     return (
         <Wrapper>
@@ -26,10 +33,10 @@ const DefaultTemplate = ({title, loggedIn, imgUrl, children}: any) => {
                 className='templateHeader'
                 loggedIn={login}
                 imgUrl={img}>
-                {title}
+                {props.title}
             </Header>
             <Body className='templateBody'>
-                {children}
+                {props.children}
             </Body>
             <Footer className='templateFooter'/>
         </Wrapper>
