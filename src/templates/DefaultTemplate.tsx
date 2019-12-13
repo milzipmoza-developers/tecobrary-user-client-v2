@@ -1,5 +1,5 @@
 import * as React from "react";
-import {CSSProperties, useState} from "react";
+import {useState} from "react";
 import Body from 'src/organism/Body';
 import styled from "styled-components";
 import Footer from "../organism/Footer";
@@ -16,15 +16,6 @@ const Wrapper = styled.div`
     min-width: 250px;
 `;
 
-const TemplateBody: CSSProperties = {
-    overflow: 'scroll',
-    paddingBottom: '100px',
-    paddingLeft: '25px',
-    paddingRight: '25px',
-    paddingTop: '100px',
-    width: 'inherit',
-};
-
 const DefaultTemplate = ({title, loggedIn, imgUrl, children}: any) => {
     const [login] = useState(loggedIn);
     const [img] = useState(imgUrl);
@@ -37,7 +28,7 @@ const DefaultTemplate = ({title, loggedIn, imgUrl, children}: any) => {
                 imgUrl={img}>
                 {title}
             </Header>
-            <Body className='templateBody' style={TemplateBody}>
+            <Body className='templateBody'>
                 {children}
             </Body>
             <Footer className='templateFooter'/>
