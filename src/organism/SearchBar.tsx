@@ -1,11 +1,12 @@
 import * as React from "react";
+import {Link} from "react-router-dom";
 import styled from "styled-components";
 import SearchIcon from "../atom/SearchIcon";
 import SearchInput from "../atom/SearchInput";
 
 interface IProps {
     disabled: boolean;
-    onClick: any;
+    to?: string;
 }
 
 const MockSearchInput = styled.div`
@@ -21,9 +22,14 @@ const MockSearchInput = styled.div`
 
 const SearchBar = (props: IProps) => {
     return (
-        <MockSearchInput onClick={props.onClick}>
+        <MockSearchInput>
             <SearchIcon style={{width: '15px', height: '15px', padding: '4.5px', alignSelf: 'start'}}/>
-            <SearchInput disabled={props.disabled}/>
+            {props.disabled ?
+                (<Link to='/search' style={{width: '100%'}}>
+                    <SearchInput disabled={props.disabled}/>
+                </Link>) :
+                <SearchInput disabled={props.disabled}/>
+            }
         </MockSearchInput>
     );
 };
