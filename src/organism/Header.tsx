@@ -6,12 +6,12 @@ import HeaderButton from "./HeaderButton";
 
 const Wrapper = styled.div`
     background-color: rgba( 255, 255, 255, 0.8 );
-    top: 0;
+    position: absolute;
     width: 100%;
+    top: 0;
 `;
 
 const headerStyle: CSSProperties = {
-    overflow: 'auto',
     paddingBottom: '25px',
     paddingLeft: '25px',
     paddingRight: '25px',
@@ -26,9 +26,9 @@ const profileButtonStyle: CSSProperties = {
     float: 'right',
 };
 
-const Header = ({loggedIn, imgUrl, children}: any) => {
+const Header = ({className, loggedIn, imgUrl, children}: any) => {
     return (
-        <Wrapper>
+        <Wrapper className={className}>
             <div className='header' style={headerStyle}>
                 <div className='headerTitleContainer' style={headerTitleStyle}>
                     <HeaderTitle>{children}</HeaderTitle>

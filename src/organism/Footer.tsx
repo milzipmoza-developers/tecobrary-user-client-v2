@@ -6,10 +6,13 @@ import RentButton from "../molecule/RentButton";
 const Wrapper = styled.div`
     background-color: rgba( 255, 255, 255, 0 );
     bottom: 0;
-    left: 0;
+    left: 50%;
+    position: fixed;
+    transform: translateX(-50%);
     height: 80px;
     width: 100%;
-    position: absolute;
+    max-width: 450px;
+    min-width: 250px;
 `;
 
 const buttonStyle: CSSProperties = {
@@ -21,14 +24,14 @@ const buttonStyle: CSSProperties = {
     marginRight: '24px',
 };
 
-const Footer = () => {
+const Footer = ({className}: any) => {
     const onClickListener = (e: any) => {
         e.preventDefault();
         alert('qr rent');
     };
 
     return (
-        <Wrapper>
+        <Wrapper className={className}>
             <div className='qrCodeButton' style={buttonStyle} onClick={onClickListener}>
                 <RentButton/>
             </div>
