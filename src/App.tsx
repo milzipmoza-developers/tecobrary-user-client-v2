@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components'
 
 import './App.css';
-import Main from "./pages/Main";
+import Route from './router/Route';
 
 const Wrapper = styled.div`
     width: 100vw;
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 const App = () => {
     return (
         <Wrapper>
-            <Main/>
+            <Route/>
         </Wrapper>
     );
 };
