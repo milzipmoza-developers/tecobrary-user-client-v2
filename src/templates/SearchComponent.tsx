@@ -4,7 +4,7 @@ import DefaultCard from "../molecule/DefaultCard";
 import KeywordFrame from "../organism/KeywordFrame";
 import SearchBar from "../organism/SearchBar";
 
-const SearchCard = () => {
+const SearchComponent = () => {
     const [keywords] = useState([
         '제목입니다1',
         '제목입니다2',
@@ -22,4 +22,4 @@ const SearchCard = () => {
     );
 };
 
-export default SearchCard;
+export default SearchComponent;
