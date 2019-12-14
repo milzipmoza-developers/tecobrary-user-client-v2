@@ -1,5 +1,6 @@
 import {CSSProperties} from "react";
 import * as React from "react";
+import {Link} from "react-router-dom";
 import styled from "styled-components";
 import RentButton from "../molecules/RentButton";
 
@@ -25,16 +26,13 @@ const buttonStyle: CSSProperties = {
 };
 
 const Footer = ({className}: any) => {
-    const onClickListener = (e: any) => {
-        e.preventDefault();
-        alert('qr rent');
-    };
-
     return (
         <Wrapper className={className}>
-            <div className='qrCodeButton' style={buttonStyle} onClick={onClickListener}>
-                <RentButton/>
-            </div>
+            <Link to='/rents' style={{textDecoration: 'none', cursor: 'initial'}}>
+                <div className='qrCodeButton' style={buttonStyle}>
+                    <RentButton/>
+                </div>
+            </Link>
         </Wrapper>
     );
 };
