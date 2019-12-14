@@ -10,6 +10,7 @@ interface IProps {
     loggedIn: boolean;
     imgUrl?: string;
     children?: any;
+    visibleRentBtn?: 'hidden' | 'visible';
 }
 
 const Wrapper = styled.div`
@@ -38,7 +39,9 @@ const DefaultTemplate = (props: IProps) => {
             <Body className='templateBody'>
                 {props.children}
             </Body>
-            <Footer className='templateFooter'/>
+            <div style={{visibility: props.visibleRentBtn}}>
+                <Footer className='templateFooter'/>
+            </div>
         </Wrapper>
     );
 };
