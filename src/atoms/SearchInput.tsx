@@ -18,7 +18,8 @@ const inputStyle: CSSProperties = {
 
 const SearchInput = (props: IProps) => {
     return (
-        <input type="text" disabled={props.disabled} placeholder="검색어를 입력하세요." style={inputStyle}/>
+        <input type="text" disabled={props.disabled} autoFocus={!props.disabled} style={inputStyle}
+               placeholder="검색어를 입력하세요."/>
     );
 };
 
