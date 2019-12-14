@@ -19,7 +19,7 @@ const SearchComponent = (props: IProps) => {
     ]);
 
     return (
-        <DefaultCard elevation={!props.isSearchPage}>
+        <DefaultCard elevation={true}>
             <SearchBar disabled={!props.isSearchPage}/>
             <KeywordFrame keywords={keywords}>최근 검색어</KeywordFrame>
         </DefaultCard>
