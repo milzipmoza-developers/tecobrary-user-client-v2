@@ -1,20 +1,19 @@
-import {CSSProperties} from "react";
 import * as React from "react";
+import {CSSProperties} from "react";
 import {Link} from "react-router-dom";
-import styled from "styled-components";
 import RentButton from "../molecules/RentButton";
 
-const Wrapper = styled.div`
-    background-color: rgba( 255, 255, 255, 0 );
-    bottom: 0;
-    left: 50%;
-    position: fixed;
-    transform: translateX(-50%);
-    height: 80px;
-    width: 100%;
-    max-width: 450px;
-    min-width: 250px;
-`;
+const footerStyle: CSSProperties = {
+    backgroundColor: 'rgba( 255, 255, 255, 0 )',
+    bottom: '0',
+    height: '80px',
+    left: '50%',
+    maxWidth: '450px',
+    minWidth: '250px',
+    position: 'fixed',
+    transform: 'translateX(-50%)',
+    width: '100%',
+};
 
 const buttonStyle: CSSProperties = {
     backgroundColor: 'black',
@@ -27,13 +26,13 @@ const buttonStyle: CSSProperties = {
 
 const Footer = ({className}: any) => {
     return (
-        <Wrapper className={className}>
+        <div className={className} style={footerStyle}>
             <Link to='/rents' style={{textDecoration: 'none', cursor: 'initial'}}>
                 <div className='qrCodeButton' style={buttonStyle}>
                     <RentButton/>
                 </div>
             </Link>
-        </Wrapper>
+        </div>
     );
 };
 
