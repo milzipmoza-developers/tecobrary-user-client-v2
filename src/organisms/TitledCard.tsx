@@ -5,6 +5,7 @@ import DefaultCard from "../molecules/DefaultCard";
 interface IProps {
     title?: string,
     children?: any,
+    elevation?: boolean,
 }
 
 const TitleWrapper = styled.div`
@@ -21,7 +22,7 @@ const TitleWrapper = styled.div`
 
 const TitledCard = (props: IProps) => {
     return (
-        <DefaultCard elevation={true}>
+        <DefaultCard elevation={props.elevation === true}>
             {props.title ? <TitleWrapper>{props.title}</TitleWrapper> : null}
             {props.children}
         </DefaultCard>
