@@ -7,7 +7,7 @@ const Main = () => {
     return (
         <DefaultTemplate title='대시보드' loggedIn={false}>
             <SearchComponent isSearchPage={false}/>
-            <TitledCard title='추천도서'>
+            <TitledCard title='추천도서' elevation={true}>
                 추천 도서 목록
             </TitledCard>
         </DefaultTemplate>
