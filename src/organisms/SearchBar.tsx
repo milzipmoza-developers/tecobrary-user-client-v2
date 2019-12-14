@@ -1,6 +1,6 @@
 import * as React from "react";
+import {CSSProperties} from "react";
 import {Link} from "react-router-dom";
-import styled from "styled-components";
 import SearchIcon from "../atoms/SearchIcon";
 import SearchInput from "../atoms/SearchInput";
 
@@ -9,28 +9,35 @@ interface IProps {
     to?: string;
 }
 
-const MockSearchInput = styled.div`
-    background-color: #dadada;
-    border-radius: 13px;
-    display: flex;
-    flex-direction: row;
-    padding-left: 12px;
-    padding-right: 12px
-    height: fit-content
-    width: inherit;
-`;
+const searchBarStyle: CSSProperties = {
+    backgroundColor: '#dadada',
+    borderRadius: '13px',
+    display: 'flex',
+    flexDirection: 'row',
+    height: 'fit-content',
+    paddingLeft: '12px',
+    paddingRight: '12px',
+    width: 'inherit',
+};
+
+const searchIconStyle: CSSProperties = {
+    alignSelf: 'start',
+    height: '15px',
+    padding: '4.5px',
+    width: '15px',
+};
 
 const SearchBar = (props: IProps) => {
     return (
-        <MockSearchInput>
-            <SearchIcon style={{width: '15px', height: '15px', padding: '4.5px', alignSelf: 'start'}}/>
+        <div className='searchBar' style={searchBarStyle}>
+            <SearchIcon style={searchIconStyle}/>
             {props.disabled ?
                 (<Link to='/search' style={{width: '100%'}}>
                     <SearchInput disabled={props.disabled}/>
                 </Link>) :
                 <SearchInput disabled={props.disabled}/>
             }
-        </MockSearchInput>
+        </div>
     );
 };
 
