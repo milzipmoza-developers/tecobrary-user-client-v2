@@ -1,15 +1,22 @@
 import * as React from "react";
 import {CSSProperties} from "react";
-import styled from "styled-components";
 import HeaderTitle from "../molecules/HeaderTitle";
 import HeaderButton from "./HeaderButton";
 
-const Wrapper = styled.div`
-    background-color: rgba( 255, 255, 255, 0.8 );
-    position: absolute;
-    width: 100%;
-    top: 0;
-`;
+interface IProps {
+    className: string;
+    loggedIn: boolean;
+    imgUrl?: string;
+    profileIcon: 'hidden' | 'visible';
+    children?: any;
+}
+
+const headerContainer: CSSProperties = {
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    position: 'absolute',
+    top: '0',
+    width: '100%',
+};
 
 const headerStyle: CSSProperties = {
     paddingBottom: '25px',
@@ -26,18 +33,20 @@ const profileButtonStyle: CSSProperties = {
     float: 'right',
 };
 
-const Header = ({className, loggedIn, imgUrl, children}: any) => {
+const Header = (props: IProps) => {
     return (
-        <Wrapper className={className}>
+        <div className={props.className} style={headerContainer}>
             <div className='header' style={headerStyle}>
                 <div className='headerTitleContainer' style={headerTitleStyle}>
-                    <HeaderTitle>{children}</HeaderTitle>
+                    <HeaderTitle>{props.children}</HeaderTitle>
                 </div>
-                <div className='profileButtonContainer' style={profileButtonStyle}>
-                    <HeaderButton loggedIn={loggedIn} imgUrl={imgUrl}/>
+                <div style={{visibility: props.profileIcon}}>
+                    <div className='profileButtonContainer' style={profileButtonStyle}>
+                        <HeaderButton loggedIn={props.loggedIn} imgUrl={props.imgUrl}/>
+                    </div>
                 </div>
             </div>
-        </Wrapper>
+        </div>
     )
 };
 

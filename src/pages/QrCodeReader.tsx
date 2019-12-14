@@ -18,7 +18,7 @@ const QrCodeReader = () => {
     };
 
     return (
-        <DefaultTemplate title='대여하기' loggedIn={false} visibleRentBtn='hidden'>
+        <DefaultTemplate title='대여하기' loggedIn={false} visibleRentBtn='hidden' profileIcon='visible'>
             <TitledCard>
                 <QrReader onScan={handleScan} onError={handleError}/>
             </TitledCard>

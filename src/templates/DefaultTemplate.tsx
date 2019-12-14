@@ -10,6 +10,7 @@ interface IProps {
     loggedIn: boolean;
     imgUrl?: string;
     children?: any;
+    profileIcon: 'visible' | 'hidden';
     visibleRentBtn?: 'hidden' | 'visible';
 }
 
@@ -33,7 +34,8 @@ const DefaultTemplate = (props: IProps) => {
             <Header
                 className='templateHeader'
                 loggedIn={login}
-                imgUrl={img}>
+                imgUrl={img}
+                profileIcon={props.profileIcon}>
                 {props.title}
             </Header>
             <Body className='templateBody'>

@@ -27,7 +27,7 @@ const Search = () => {
     const [bookList] = useState(dummyBookList);
 
     return (
-        <DefaultTemplate title='도서 검색' loggedIn={true}>
+        <DefaultTemplate title='도서 검색' loggedIn={true} profileIcon='visible'>
             <SearchComponent isSearchPage={true}/>
             <SearchListCard bookList={bookList}/>
         </DefaultTemplate>
