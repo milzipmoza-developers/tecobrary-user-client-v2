@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "styled-components";
+import {CSSProperties} from "react";
 import DefaultCard from "../organisms/DefaultCard";
 
 interface IProps {
@@ -8,22 +8,18 @@ interface IProps {
     elevation?: boolean,
 }
 
-const TitleWrapper = styled.div`
-  height: 32px;
-  font-size: 21px;
-  font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #000000;
-  padding-bottom: 20px;
-`;
+const titleStyle: CSSProperties = {
+    color: '#000000',
+    fontSize: '21px',
+    fontWeight: 'bold',
+    height: '32px',
+    paddingBottom: '20px',
+};
 
 const TitledCard = (props: IProps) => {
     return (
         <DefaultCard elevation={props.elevation === true}>
-            {props.title ? <TitleWrapper>{props.title}</TitleWrapper> : null}
+            {props.title ? <div className='title' style={titleStyle}>{props.title}</div> : null}
             {props.children}
         </DefaultCard>
     );
