@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as QrReader from 'react-qr-reader';
-import TitledCard from "../organisms/TitledCard";
 import DefaultTemplate from "../templates/DefaultTemplate";
+import TitledCard from "../templates/TitledCard";
 
 const QrCodeReader = () => {
     const handleScan = (data: any) => {

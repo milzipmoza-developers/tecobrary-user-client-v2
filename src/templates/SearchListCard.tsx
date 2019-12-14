@@ -1,6 +1,6 @@
 import * as React from "react";
 import SearchList from "../organisms/SearchList";
-import TitledCard from "../organisms/TitledCard";
+import TitledCard from "./TitledCard";
 
 interface IProps {
     bookList: any;

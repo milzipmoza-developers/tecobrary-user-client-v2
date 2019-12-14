@@ -1,6 +1,6 @@
 import * as React from "react";
 import {useState} from "react";
-import DefaultCard from "../molecules/DefaultCard";
+import DefaultCard from "../organisms/DefaultCard";
 import KeywordFrame from "../organisms/KeywordFrame";
 import SearchBar from "../organisms/SearchBar";
 

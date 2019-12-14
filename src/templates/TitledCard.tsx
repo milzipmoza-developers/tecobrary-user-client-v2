@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import DefaultCard from "../molecules/DefaultCard";
+import DefaultCard from "../organisms/DefaultCard";
 
 interface IProps {
     title?: string,

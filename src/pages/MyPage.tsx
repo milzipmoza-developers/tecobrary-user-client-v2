@@ -1,6 +1,6 @@
 import * as React from "react";
-import TitledCard from "../organisms/TitledCard";
 import DefaultTemplate from "../templates/DefaultTemplate";
+import TitledCard from "../templates/TitledCard";
 
 const MyPage = () => {
     return (
