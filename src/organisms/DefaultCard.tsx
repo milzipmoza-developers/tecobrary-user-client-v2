@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const defaultCardStyle = (elevation: boolean) => ({
-    borderRadius: '15px',
+    borderRadius: '8px',
     boxShadow: elevation ? '4px 3px 10px 0 rgba(0, 0, 0, 0.5)' : '',
     height: 'fit-content',
     marginBottom: '32px',
