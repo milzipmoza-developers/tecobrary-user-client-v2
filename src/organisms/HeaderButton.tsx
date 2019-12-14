@@ -1,6 +1,6 @@
-import {CSSProperties} from "react";
 import * as React from "react";
-import ProfileButton from "../molecules/ProfileButton";
+import {CSSProperties} from "react";
+import LoginButton from "../molecules/LoginButton";
 import UserButton from "../molecules/UserButton";
 
 const buttonStyle: CSSProperties = {
@@ -14,7 +14,7 @@ const buttonStyle: CSSProperties = {
 const HeaderButton = ({loggedIn, imgUrl}: any) => {
     return (
         <div className='profileButton' style={buttonStyle}>
-            {(imgUrl && loggedIn) ? <UserButton imgUrl={imgUrl}/> : <ProfileButton/>}
+            {(imgUrl && loggedIn) ? <UserButton imgUrl={imgUrl}/> : <LoginButton/>}
         </div>
     );
 };

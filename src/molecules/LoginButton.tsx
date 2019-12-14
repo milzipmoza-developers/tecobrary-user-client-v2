@@ -7,17 +7,17 @@ const iconStyle: CSSProperties = {
     width: '55px',
 };
 
-const ProfileButton = () => {
-    const profileButtonClickHandler = (e: any) => {
+const LoginButton = () => {
+    const loginButtonClickHandler = (e: any) => {
         e.preventDefault();
-        alert("profile button clicked")
+        alert("login button clicked")
     };
 
     return (
-        <div className='profileIcon' onClick={profileButtonClickHandler} style={iconStyle}>
+        <div className='loginIcon' onClick={loginButtonClickHandler} style={iconStyle}>
             <NotLoginIcon width='55px' height='55px'/>
         </div>
     );
 };
 
-export default ProfileButton;
+export default LoginButton;
