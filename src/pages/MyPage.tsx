@@ -1,11 +1,8 @@
 import * as React from "react";
-import CardMessageHolder from "../atoms/CardMessageHolder";
-import {TEXT_BUTTON_BLUE} from "../common/colors";
-import CardTextLinkButton from "../templates/CardTextLinkButton";
 import DefaultTemplate from "../templates/DefaultTemplate";
+import MyPageBadgeCard from "../templates/MyPageBadgeCard";
 import MyPageRentHistoryCard from "../templates/MyPageRentHistoryCard";
 import MyPageUserInfoCard from "../templates/MyPageUserInfoCard";
-import TitledCard from "../templates/TitledCard";
 
 const ONE_MONTH = 24 * 3600 * 1000 * 30;
 
@@ -35,12 +32,7 @@ const MyPage = () => {
                 numeric={UserInfo.numeric} />
             <MyPageRentHistoryCard
                 rentHistories={rentHistories}/>
-            <TitledCard title='나의 뱃지' elevation={true}>
-                <CardMessageHolder>서비스 준비중 입니다.</CardMessageHolder>
-                <CardTextLinkButton to='/' cursor='pointer' color={TEXT_BUTTON_BLUE}>
-                    더보기
-                </CardTextLinkButton>
-            </TitledCard>
+            <MyPageBadgeCard/>
         </DefaultTemplate>
     );
 };
