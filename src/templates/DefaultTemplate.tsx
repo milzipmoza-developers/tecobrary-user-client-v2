@@ -1,7 +1,6 @@
 import * as React from "react";
-import {useState} from "react";
+import {CSSProperties, useState} from "react";
 import Body from 'src/organisms/Body';
-import styled from "styled-components";
 import Footer from "../organisms/Footer";
 import Header from "../organisms/Header";
 
@@ -14,23 +13,23 @@ interface IProps {
     visibleRentBtn?: 'hidden' | 'visible';
 }
 
-const Wrapper = styled.div`
-    background-color: #ffffff;
-    flex: 1;
-    position: relative;
-    height: 100%;
-    width: 100%;
-    overflow: scroll;
-    max-width: 450px;
-    min-width: 250px;
-`;
+const templateStyle: CSSProperties = {
+    backgroundColor: '#ffffff',
+    flex: 1,
+    height: '100%',
+    maxWidth: '450px',
+    minWidth: '250px',
+    overflow: 'scroll',
+    position: 'relative',
+    width: '100%',
+};
 
 const DefaultTemplate = (props: IProps) => {
     const [login] = useState(props.loggedIn);
     const [img] = useState(props.imgUrl);
 
     return (
-        <Wrapper>
+        <div className='defaultTemplate' style={templateStyle}>
             <Header
                 className='templateHeader'
                 loggedIn={login}
@@ -44,7 +43,7 @@ const DefaultTemplate = (props: IProps) => {
             <div style={{visibility: props.visibleRentBtn}}>
                 <Footer className='templateFooter'/>
             </div>
-        </Wrapper>
+        </div>
     );
 };
 
