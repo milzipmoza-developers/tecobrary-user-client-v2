@@ -1,6 +1,10 @@
 import * as React from "react";
 import {CSSProperties} from "react";
 
+interface IProps {
+    children: string;
+}
+
 const messageStyle: CSSProperties = {
     fontWeight: 'lighter',
     height: '100px',
@@ -8,10 +12,10 @@ const messageStyle: CSSProperties = {
     textAlign: 'center',
 };
 
-const EmptyListMessage = () => (
+const CardMessageHolder = ({children}: IProps) => (
     <div style={messageStyle}>
-        내역이 존재하지 않습니다.
+        {children}
     </div>
 );
 
-export default EmptyListMessage;
+export default CardMessageHolder;

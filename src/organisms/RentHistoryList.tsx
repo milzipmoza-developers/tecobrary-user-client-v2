@@ -1,7 +1,7 @@
 import * as React from "react";
 import {CSSProperties} from "react";
+import CardMessageHolder from "../atoms/CardMessageHolder";
 import Divider from "../atoms/Divider";
-import EmptyListMessage from "../atoms/EmptyListMessage";
 import HistoryInfoRow from "./HistoryInfoRow";
 
 interface IHistory {
@@ -38,7 +38,7 @@ const RentHistoryList = ({rentHistories}: IProps) => {
     return (
         <div style={rentHistoryListStyle}>
             {rentHistories.length === 0 ?
-                <EmptyListMessage/> :
+                <CardMessageHolder>내역이 존재하지 않습니다.</CardMessageHolder> :
                 <HistoryList/>}
         </div>
     );

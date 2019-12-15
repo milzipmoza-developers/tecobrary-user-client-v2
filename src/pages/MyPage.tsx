@@ -1,22 +1,24 @@
 import * as React from "react";
-import Divider from "../atoms/Divider";
+import CardMessageHolder from "../atoms/CardMessageHolder";
 import {TEXT_BUTTON_BLUE} from "../common/colors";
-import HistoryInfoRow from "../organisms/HistoryInfoRow";
 import CardTextLinkButton from "../templates/CardTextLinkButton";
 import DefaultTemplate from "../templates/DefaultTemplate";
+import MyPageRentHistoryCard from "../templates/MyPageRentHistoryCard";
 import MyPageUserInfoCard from "../templates/MyPageUserInfoCard";
 import TitledCard from "../templates/TitledCard";
 
 const ONE_MONTH = 24 * 3600 * 1000 * 30;
 
-interface IHistory {
-    title: string;
-    createdAt: number;
-    deletedAt: number;
-    likeStatus: boolean;
-}
+const UserInfo = {
+    authorization: 'KING',
+    avatarUrl: 'https://avatars0.githubusercontent.com/u/52121827?s=460&v=4',
+    email: 'thedevluffy@gmail.com',
+    loggedIn: true,
+    name: '개발왕루피',
+    numeric: 1,
+};
 
-const rentHistories = [
+const rentHistories: any[] = [
     { title: '객체지향의 사실과 오해', createdAt: Date.now() - ONE_MONTH, deletedAt: Date.now(), likeStatus: true },
     { title: '배민다움', createdAt: Date.now() - 2 * ONE_MONTH, deletedAt: Date.now() - ONE_MONTH, likeStatus: false },
     { title: '오브젝트', createdAt: Date.now() - 3 * ONE_MONTH, deletedAt: Date.now() - 2 * ONE_MONTH, likeStatus: true },
@@ -24,26 +26,17 @@ const rentHistories = [
 
 const MyPage = () => {
     return (
-        <DefaultTemplate title='마이페이지' loggedIn={true} profileIcon='hidden'>
+        <DefaultTemplate title='마이페이지' loggedIn={UserInfo.loggedIn} profileIcon='hidden'>
             <MyPageUserInfoCard
-                name='개발왕루피'
-                email='thedevluffy@gmail.com'
-                avatarUrl='https://avatars0.githubusercontent.com/u/52121827?s=460&v=4'
-                verified={false}
-                numeric={1} />
-            <TitledCard title='대여 기록' elevation={true}>
-                <div style={{display: 'flex', flexDirection: 'column', margin: '4px', marginBottom: '8px'}}>
-                    <Divider/>
-                    {rentHistories.map((rentHistory: IHistory, i: number) => (
-                        <HistoryInfoRow key={i} rentHistory={rentHistory}/>
-                    ))}
-                </div>
-                <CardTextLinkButton to='/histories' cursor='pointer' color={TEXT_BUTTON_BLUE}>
-                    더보기
-                </CardTextLinkButton>
-            </TitledCard>
+                name={UserInfo.name}
+                email={UserInfo.email}
+                avatarUrl={UserInfo.avatarUrl}
+                verified={UserInfo.authorization !== 'NONE'}
+                numeric={UserInfo.numeric} />
+            <MyPageRentHistoryCard
+                rentHistories={rentHistories}/>
             <TitledCard title='나의 뱃지' elevation={true}>
-                뱃지뱃지
+                <CardMessageHolder>서비스 준비중 입니다.</CardMessageHolder>
                 <CardTextLinkButton to='/' cursor='pointer' color={TEXT_BUTTON_BLUE}>
                     더보기
                 </CardTextLinkButton>
