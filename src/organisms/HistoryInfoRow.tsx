@@ -1,9 +1,7 @@
 import * as React from "react";
 import {CSSProperties} from "react";
-import Divider from "../atoms/Divider";
 import HistoryInfoElement from "../molecules/HistoryInfoElement";
 import HistoryButtonElement from "./HistoryButtonElement";
-
 
 interface IHistory {
     title: string;
@@ -13,7 +11,6 @@ interface IHistory {
 }
 
 interface IProps {
-    key?: number,
     rentHistory: IHistory
 }
 const historyInfoRowStyle: CSSProperties = {
@@ -24,16 +21,13 @@ const historyInfoRowStyle: CSSProperties = {
     paddingTop: '8px',
 };
 
-const HistoryInfoRow = ({key, rentHistory}: IProps) => {
+const HistoryInfoRow = ({rentHistory}: IProps) => {
     return (
-        <div key={key}>
-            <div style={historyInfoRowStyle}>
-                <HistoryInfoElement startDate={rentHistory.createdAt} endDate={rentHistory.deletedAt}>
-                    {rentHistory.title}
-                </HistoryInfoElement>
-                <HistoryButtonElement likeStatus={rentHistory.likeStatus}/>
-            </div>
-            <Divider/>
+        <div style={historyInfoRowStyle}>
+            <HistoryInfoElement startDate={rentHistory.createdAt} endDate={rentHistory.deletedAt}>
+                {rentHistory.title}
+            </HistoryInfoElement>
+            <HistoryButtonElement likeStatus={rentHistory.likeStatus}/>
         </div>
     )
 };
