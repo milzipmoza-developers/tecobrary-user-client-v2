@@ -1,33 +1,50 @@
 import * as React from "react";
+import Divider from "../atoms/Divider";
+import {TEXT_BUTTON_BLUE} from "../common/colors";
+import HistoryInfoRow from "../organisms/HistoryInfoRow";
 import CardTextLinkButton from "../templates/CardTextLinkButton";
 import DefaultTemplate from "../templates/DefaultTemplate";
+import MyPageUserInfoCard from "../templates/MyPageUserInfoCard";
 import TitledCard from "../templates/TitledCard";
-import UserInfoComponent from "../templates/UserInfoComponent";
+
+const ONE_MONTH = 24 * 3600 * 1000 * 30;
+
+interface IHistory {
+    title: string;
+    createdAt: number;
+    deletedAt: number;
+    likeStatus: boolean;
+}
+
+const rentHistories = [
+    { title: '객체지향의 사실과 오해', createdAt: Date.now() - ONE_MONTH, deletedAt: Date.now(), likeStatus: true },
+    { title: '배민다움', createdAt: Date.now() - 2 * ONE_MONTH, deletedAt: Date.now() - ONE_MONTH, likeStatus: false },
+    { title: '오브젝트', createdAt: Date.now() - 3 * ONE_MONTH, deletedAt: Date.now() - 2 * ONE_MONTH, likeStatus: true },
+];
 
 const MyPage = () => {
     return (
         <DefaultTemplate title='마이페이지' loggedIn={true} profileIcon='hidden'>
-            <TitledCard elevation={true}>
-                <UserInfoComponent
-                    name='개발왕루피'
-                    email='thedevluffy@gmail.com'
-                    avatarUrl='https://avatars0.githubusercontent.com/u/52121827?s=460&v=4'/>
-                <div style={{marginTop: '32px', marginBottom: '32px', fontWeight: 300, fontSize: '15px'}}>
-                    우아한테크코스 2기 인증됨
-                </div>
-                <CardTextLinkButton to='/histories' cursor='pointer' color='#FF0000'>
-                    로그아웃
-                </CardTextLinkButton>
-            </TitledCard>
+            <MyPageUserInfoCard
+                name='개발왕루피'
+                email='thedevluffy@gmail.com'
+                avatarUrl='https://avatars0.githubusercontent.com/u/52121827?s=460&v=4'
+                verified={false}
+                numeric={1} />
             <TitledCard title='대여 기록' elevation={true}>
-                대여 기록
-                <CardTextLinkButton to='/histories' cursor='pointer' color='#3E8BFF'>
+                <div style={{display: 'flex', flexDirection: 'column', margin: '4px', marginBottom: '8px'}}>
+                    <Divider/>
+                    {rentHistories.map((rentHistory: IHistory, i: number) => (
+                        <HistoryInfoRow key={i} rentHistory={rentHistory}/>
+                    ))}
+                </div>
+                <CardTextLinkButton to='/histories' cursor='pointer' color={TEXT_BUTTON_BLUE}>
                     더보기
                 </CardTextLinkButton>
             </TitledCard>
             <TitledCard title='나의 뱃지' elevation={true}>
                 뱃지뱃지
-                <CardTextLinkButton to='/' cursor='pointer' color='#3E8BFF'>
+                <CardTextLinkButton to='/' cursor='pointer' color={TEXT_BUTTON_BLUE}>
                     더보기
                 </CardTextLinkButton>
             </TitledCard>
