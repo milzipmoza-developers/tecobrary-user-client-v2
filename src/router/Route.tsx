@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Main from "../pages/Main";
 import MyPage from "../pages/MyPage";
 import QrCodeReader from "../pages/QrCodeReader";
+import RentHistory from "../pages/RentHistory";
 import Search from "../pages/Search";
 
 const Router = () => {
@@ -13,6 +14,7 @@ const Router = () => {
                 <Route path='/search' component={Search}/>
                 <Route path='/rents' component={QrCodeReader}/>
                 <Route path='/mypage' component={MyPage}/>
+                <Route path='/histories' component={RentHistory}/>
             </Switch>
         </BrowserRouter>
     )
