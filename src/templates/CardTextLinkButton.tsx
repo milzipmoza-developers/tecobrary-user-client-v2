@@ -1,6 +1,6 @@
 import * as React from "react";
 import {CSSProperties} from "react";
-import {colorProps, cursorProps} from "../atoms/types";
+import {colorProps, cursorProps} from "../common/types";
 import TextLinkButton from "../molecules/TextLinkButton";
 
 interface IProps {

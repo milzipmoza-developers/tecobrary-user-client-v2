@@ -1,5 +1,5 @@
 import * as React from "react";
-import {colorProps, cursorProps} from "./types";
+import {colorProps, cursorProps} from "../common/types";
 
 interface IProps {
     children: string;
