@@ -1,5 +1,5 @@
 import * as React from "react";
-import {colorProps, textAlignProps} from "../common/types";
+import {colorProps, textAlignProps} from "../../common/types";
 
 interface IProps {
     color: colorProps;

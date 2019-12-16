@@ -1,6 +1,6 @@
 import * as React from "react";
 import {CSSProperties} from "react";
-import {BORDER_DEFAULT_GRAY} from "../common/colors";
+import {BORDER_DEFAULT_GRAY} from "../../common/colors";
 
 interface IProps {
     children: any;

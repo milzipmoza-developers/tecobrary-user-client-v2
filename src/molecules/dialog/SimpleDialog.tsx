@@ -1,25 +1,24 @@
 import * as React from "react";
-import DialogBackground from "../atoms/DialogBackground";
-import DialogBodyFrame from "../atoms/DialogBodyFrame";
-import DialogButton from "../atoms/DialogButton";
-import DialogFooter from "../atoms/DialogFooter";
-import DialogFrame from "../atoms/DialogFrame";
-import DialogHeader from "../atoms/DialogHeader";
-import DialogWrapper from "../atoms/DialogWrapper";
-import VDivider from "../atoms/VDivider";
-import {ERROR_COLOR, SUCCESS_COLOR, TEXT_BUTTON_GREEN, TEXT_BUTTON_RED} from "../common/colors";
-
-type Mode = 'error' | 'success' | 'warning';
+import DialogBackground from "../../atoms/dialog/DialogBackground";
+import DialogBodyFrame from "../../atoms/dialog/DialogBodyFrame";
+import DialogButton from "../../atoms/dialog/DialogButton";
+import DialogFooter from "../../atoms/dialog/DialogFooter";
+import DialogFrame from "../../atoms/dialog/DialogFrame";
+import DialogHeader from "../../atoms/dialog/DialogHeader";
+import DialogWrapper from "../../atoms/dialog/DialogWrapper";
+import VDivider from "../../atoms/VDivider";
+import {ERROR_COLOR, SUCCESS_COLOR, TEXT_BUTTON_GREEN, TEXT_BUTTON_RED} from "../../common/colors";
+import {dialogMode} from "../../common/types";
 
 interface IProps {
     title: string;
-    mode: Mode;
+    mode: dialogMode;
     children: any;
     cancelOnClick: any;
     confirmOnClick: any;
 }
 
-const modeConverter = (mode: Mode) => {
+const modeConverter = (mode: dialogMode) => {
     if (mode === 'error') {
         return ERROR_COLOR;
     }

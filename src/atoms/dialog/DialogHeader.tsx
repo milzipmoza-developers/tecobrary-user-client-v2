@@ -1,5 +1,5 @@
 import * as React from "react";
-import {colorProps} from "../common/types";
+import {colorProps} from "../../common/types";
 import DialogTitle from "./DialogTitle";
 
 interface IProps {
