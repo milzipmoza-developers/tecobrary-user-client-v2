@@ -1,10 +1,7 @@
 import * as React from "react";
-import {ErrorDialogProps} from "../../organisms/rentbook/ErrorDialogProps";
-import {IErrorDialogProps} from "../../organisms/rentbook/IErrorDialogProps";
-import {ISuccessDialogProps} from "../../organisms/rentbook/ISuccessDialogProps";
+import {ErrorDialogProps, IErrorDialogProps, ISuccessDialogProps, SuccessDialogProps} from "../../organisms/rentbook";
 import RentBookErrorDialog from "../../organisms/rentbook/RentBookErrorDialog";
 import RentBookSuccessDialog from "../../organisms/rentbook/RentBookSuccessDialog";
-import {SuccessDialogProps} from "../../organisms/rentbook/SuccessDialogProps";
 
 interface IProps {
     dialogProps: ISuccessDialogProps | IErrorDialogProps | undefined;
