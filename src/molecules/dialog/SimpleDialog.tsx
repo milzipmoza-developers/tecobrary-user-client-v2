@@ -7,8 +7,9 @@ import DialogFrame from "../../atoms/dialog/DialogFrame";
 import DialogHeader from "../../atoms/dialog/DialogHeader";
 import DialogWrapper from "../../atoms/dialog/DialogWrapper";
 import VDivider from "../../atoms/VDivider";
-import {ERROR_COLOR, SUCCESS_COLOR, TEXT_BUTTON_GREEN, TEXT_BUTTON_RED} from "../../common/colors";
+import {TEXT_BUTTON_GREEN, TEXT_BUTTON_RED} from "../../common/colors";
 import {dialogMode} from "../../common/types";
+import {modeConverter} from "../../common/utils/DialogMode";
 
 interface IProps {
     title: string;
@@ -17,16 +18,6 @@ interface IProps {
     cancelOnClick: any;
     confirmOnClick: any;
 }
-
-const modeConverter = (mode: dialogMode) => {
-    if (mode === 'error') {
-        return ERROR_COLOR;
-    }
-    if (mode === 'success') {
-        return SUCCESS_COLOR
-    }
-    return '#ffffff'
-};
 
 const SimpleDialog = (props: IProps) => (
     <DialogBackground>
@@ -39,7 +30,7 @@ const SimpleDialog = (props: IProps) => (
                 <DialogFooter>
                     <DialogButton color={TEXT_BUTTON_RED} onClick={props.cancelOnClick}>취소</DialogButton>
                     <VDivider/>
-                    <DialogButton color={TEXT_BUTTON_GREEN} onClick={props.confirmOnClick}>대여</DialogButton>
+                    <DialogButton color={TEXT_BUTTON_GREEN} onClick={props.confirmOnClick}>확인</DialogButton>
                 </DialogFooter>
             </DialogFrame>
         </DialogWrapper>
