@@ -12,7 +12,7 @@ const buttonStyle = (color: colorProps, textAlign: textAlignProps) => ({
     cursor: 'pointer',
     flex: 1,
     fontSize: '14px',
-    fontWeight: 500,
+    fontWeight: 400,
     lineHeight: '44px',
     textAlign,
 });
