@@ -16,7 +16,7 @@ const messageHolderStyle: CSSProperties = {
 const QrCodeMessageHolder = ({message}: IProps) => (
     <div style={messageHolderStyle}>
         <div>{message}</div>
-        <div>(관리자에게 문의하세요.)</div>
+        <div>[iPhone 은 Safari 를 이용해주세요.]</div>
     </div>
 );
 
