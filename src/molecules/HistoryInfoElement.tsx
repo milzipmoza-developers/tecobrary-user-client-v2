@@ -24,12 +24,21 @@ const formatDate = (dateNumber: number) => {
     );
 };
 
+const endYearParser = (startDate: string, endDate: string) => {
+    if (startDate.substring(0, 4) === endDate.substring(0, 4)) {
+        return endDate.substring(6);
+    }
+    return endDate;
+};
+
 const HistoryInfoElement = ({startDate, endDate, children}: IProps) => {
+    const start = formatDate(startDate);
+    const end = formatDate(endDate);
 
     return (
         <div style={historyInfoStyle}>
             <BookTitleText>{children}</BookTitleText>
-            <PeriodText startDate={formatDate(startDate)} endDate={formatDate(endDate)}/>
+            <PeriodText startDate={start} endDate={endYearParser(start, end)}/>
         </div>
     );
 };
