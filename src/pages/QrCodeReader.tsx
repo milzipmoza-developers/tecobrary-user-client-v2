@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 import QrCodeMessageHolder from "../atoms/QrCodeMessageHolder";
 import RentBookQrCodeReader from "../atoms/rentbook/RentBookQrCodeReader";
 import {BookInfoDto} from "../common/classes/BookInfoDto";
-import {findBookBySerialNumber} from "../common/service/SerialService";
+import {findBookBySerialNumber} from "../common/controller/SerialController";
 import {IBookInfo} from "../common/types";
 import * as QrCodeParser from "../common/utils/QrCodeParser";
 import {DialogProps, SuccessDialogProps} from "../organisms/rentbook";
