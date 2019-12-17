@@ -3,16 +3,11 @@ import {CSSProperties} from "react";
 import CardMessageHolder from "../atoms/CardMessageHolder";
 import Divider from "../atoms/Divider";
 import HistoryInfoRow from "./HistoryInfoRow";
-
-interface IHistory {
-    title: string;
-    createdAt: number;
-    deletedAt: number;
-    likeStatus: boolean;
-}
+import {IRentHistoryProps} from "./renthistory/IRentHistoryProps";
+import {RentHistoryProps} from "./renthistory/RentHistoryProps";
 
 interface IProps {
-    rentHistories: any;
+    rentHistories: RentHistoryProps[];
 }
 
 const rentHistoryListStyle: CSSProperties = {
@@ -26,7 +21,7 @@ const RentHistoryList = ({rentHistories}: IProps) => {
     const HistoryList = () => (
         <div>
             <Divider/>
-            {rentHistories.map((rentHistory: IHistory, i: number) => (
+            {rentHistories.map((rentHistory: IRentHistoryProps, i: number) => (
                 <div key={i}>
                     <HistoryInfoRow rentHistory={rentHistory}/>
                     <Divider/>
