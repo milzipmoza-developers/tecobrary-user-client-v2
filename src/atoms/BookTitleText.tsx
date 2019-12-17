@@ -9,6 +9,10 @@ const titleText: CSSProperties = {
     display: 'flex',
     flexDirection: 'row',
     fontSize: '16px',
+    height: '28px',
+    lineHeight: '28px',
+    overflow: 'hidden',
+    width: '100%',
 };
 
 const BookTitleText = ({children}: IProps) => (
