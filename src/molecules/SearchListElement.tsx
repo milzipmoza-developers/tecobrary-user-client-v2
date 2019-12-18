@@ -1,16 +1,10 @@
 import * as React from "react";
 import SearchListCell from "../atoms/SearchListCell";
-
-interface IBookProps {
-    id: string;
-    title: string;
-    author: string;
-    publisher: string;
-}
+import {IBookInfo} from "../common/types";
 
 interface IProps {
-    id: string;
-    book: IBookProps;
+    id: number;
+    book: IBookInfo;
     onClick?: any;
 }
 
