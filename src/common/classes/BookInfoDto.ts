@@ -1,6 +1,11 @@
 import {IBookInfo} from "../types";
 
 export class BookInfoDto implements IBookInfo {
+
+    public static emptyInit() {
+        return new BookInfoDto(0, '', '', '', '', '', '');
+    }
+
     public id: number;
     public image: string;
     public title: string;
