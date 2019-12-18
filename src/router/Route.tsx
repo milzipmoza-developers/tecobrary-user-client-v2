@@ -4,6 +4,7 @@ import LibraryBook from "../pages/LibraryBook";
 import Main from "../pages/Main";
 import MyPage from "../pages/MyPage";
 import QrCodeReader from "../pages/QrCodeReader";
+import Recommend from "../pages/Recommend";
 import RentHistory from "../pages/RentHistory";
 import Search from "../pages/Search";
 import WishBook from "../pages/WishBook";
@@ -18,7 +19,8 @@ const Router = () => {
                 <Route path='/mypage' component={MyPage}/>
                 <Route path='/histories' component={RentHistory}/>
                 <Route path='/wishes' component={WishBook}/>
-                <Route path='/book/:bookId' component={LibraryBook}/>
+                <Route path='/books/:bookId' component={LibraryBook}/>
+                <Route path='/recommends' component={Recommend}/>
             </Switch>
         </BrowserRouter>
     )
