@@ -20,13 +20,13 @@ const drawerItemStyle: CSSProperties = {
 const DrawerItem = ({item}: IProps) => {
     const history = useHistory();
 
-    const dialogButtonHandler = (to: string) => {
+    const dialogButtonHandler = (to: string) => () => {
         history.push(to);
     };
+
     return (
         <div>
-            {/* tslint:disable-next-line:jsx-no-lambda */}
-            <div style={{height: '55px', width: '100%'}} onClick={() => dialogButtonHandler(item.to)}>
+            <div style={{height: '55px', width: '100%'}} onClick={dialogButtonHandler(item.to)}>
                 <div style={drawerItemStyle}>
                     <div style={{flex: 1, paddingLeft: '8px'}}>
                         {item.icon}
