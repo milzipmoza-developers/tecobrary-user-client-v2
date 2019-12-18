@@ -4,7 +4,7 @@ import CardButtonText from "../atoms/CardButtonText";
 import {colorProps, cursorProps} from "../common/types";
 
 interface IProps {
-    to: string;
+    to?: string;
     cursor: cursorProps;
     color: colorProps;
     children: string;
@@ -16,11 +16,15 @@ const linkStyle = {
 
 const TextLinkButton = ({to, cursor, color, children}: IProps) => {
     return (
-        <Link to={to} style={linkStyle}>
+        to ?
+            <Link to={to} style={linkStyle}>
+                <CardButtonText cursor={cursor} color={color}>
+                    {children}
+                </CardButtonText>
+            </Link> :
             <CardButtonText cursor={cursor} color={color}>
                 {children}
             </CardButtonText>
-        </Link>
     );
 };
 

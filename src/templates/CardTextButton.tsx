@@ -4,9 +4,10 @@ import {colorProps, cursorProps} from "../common/types";
 import TextLinkButton from "../molecules/TextLinkButton";
 
 interface IProps {
-    to: string;
+    to?: string;
     cursor: cursorProps;
     color: colorProps;
+    onClick?: any;
     children: string;
 }
 
@@ -23,16 +24,16 @@ const buttonLayerStyle: CSSProperties = {
     padding: '4px'
 };
 
-const CardTextLinkButton = ({to, cursor, color, children}: IProps) => {
+const CardTextButton = (props: IProps) => {
     return (
-        <div style={buttonContainerStyle}>
+        <div style={buttonContainerStyle} onClick={props.onClick}>
             <div style={buttonLayerStyle}>
-                <TextLinkButton to={to} color={color} cursor={cursor}>
-                    {children}
+                <TextLinkButton to={props.to} color={props.color} cursor={props.cursor}>
+                    {props.children}
                 </TextLinkButton>
             </div>
         </div>
     );
 };
 
-export default CardTextLinkButton;
+export default CardTextButton;
