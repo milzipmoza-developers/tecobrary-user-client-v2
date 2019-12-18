@@ -4,6 +4,7 @@ import {CSSProperties, useState} from "react";
 import Body from 'src/organisms/Body';
 import Divider from "../atoms/Divider";
 import DrawerHeader from "../atoms/drawer/DrawerHeader";
+import BookshelfIcon from "../atoms/icons/BookshelfIcon";
 import HistoryIcon from "../atoms/icons/HistoryIcon";
 import HomeIcon from "../atoms/icons/HomeIcon";
 import ListIcon from "../atoms/icons/ListIcon";
@@ -39,6 +40,7 @@ const templateStyle: CSSProperties = {
 const drawerItems: IDrawerItem[] = [
     {title: '대시보드', to: '/', icon: <HomeIcon/>},
     {title: '희망도서 신청', to: '/wishes', icon: <WishListIcon/>},
+    {title: '장서 목록', to: '/books', icon: <BookshelfIcon/>},
     {title: '추천도서', to: '/recommends', icon: <RecommendIcon/>},
     {title: '대여 현황', to: '/rentlists', icon: <ListIcon/>},
     {title: '대여 기록', to: '/histories', icon: <HistoryIcon/>},
