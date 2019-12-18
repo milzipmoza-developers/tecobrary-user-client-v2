@@ -20,9 +20,9 @@ const Router = () => {
                 <Route path='/rents' component={QrCodeReader}/>
                 <Route path='/mypage' component={MyPage}/>
                 <Route path='/histories' component={RentHistory}/>
+                <Route path='/books/:bookId' component={LibraryBook}/>
                 <Route path='/books' component={Books}/>
                 <Route path='/wishes' component={WishBook}/>
-                <Route path='/books/:bookId' component={LibraryBook}/>
                 <Route path='/recommends' component={Recommend}/>
                 <Route path='/rentlists' component={RentList}/>
             </Switch>
