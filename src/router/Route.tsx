@@ -1,5 +1,6 @@
 import * as React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
+import LibraryBook from "../pages/LibraryBook";
 import Main from "../pages/Main";
 import MyPage from "../pages/MyPage";
 import QrCodeReader from "../pages/QrCodeReader";
@@ -17,6 +18,7 @@ const Router = () => {
                 <Route path='/mypage' component={MyPage}/>
                 <Route path='/histories' component={RentHistory}/>
                 <Route path='/wishes' component={WishBook}/>
+                <Route path='/book/:bookId' component={LibraryBook}/>
             </Switch>
         </BrowserRouter>
     )
