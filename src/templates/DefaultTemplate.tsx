@@ -6,6 +6,8 @@ import Divider from "../atoms/Divider";
 import DrawerHeader from "../atoms/drawer/DrawerHeader";
 import HistoryIcon from "../atoms/icons/HistoryIcon";
 import HomeIcon from "../atoms/icons/HomeIcon";
+import ListIcon from "../atoms/icons/ListIcon";
+import RecommendIcon from "../atoms/icons/RecommendIcon";
 import WishListIcon from "../atoms/icons/WishListIcon";
 import {IDrawerItem} from "../common/types";
 import DrawerItems from "../organisms/drawer/DrawerItems";
@@ -37,10 +39,9 @@ const templateStyle: CSSProperties = {
 const drawerItems: IDrawerItem[] = [
     {title: '대시보드', to: '/', icon: <HomeIcon/>},
     {title: '희망도서 신청', to: '/wishes', icon: <WishListIcon/>},
-    {title: '추천도서', to: '/', icon: ''},
-    {title: '대여 현황', to: '/', icon: ''},
+    {title: '추천도서', to: '/recommends', icon: <RecommendIcon/>},
+    {title: '대여 현황', to: '/rentlists', icon: <ListIcon/>},
     {title: '대여 기록', to: '/histories', icon: <HistoryIcon/>},
-    {title: '좋아요', to: '/', icon: ''},
 ];
 
 const DefaultTemplate = (props: IProps) => {
