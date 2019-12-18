@@ -36,7 +36,7 @@ const templateStyle: CSSProperties = {
 
 const drawerItems: IDrawerItem[] = [
     {title: '대시보드', to: '/', icon: <HomeIcon/>},
-    {title: '희망도서 신청', to: '/', icon: <WishListIcon/>},
+    {title: '희망도서 신청', to: '/wishes', icon: <WishListIcon/>},
     {title: '추천도서', to: '/', icon: ''},
     {title: '대여 현황', to: '/', icon: ''},
     {title: '대여 기록', to: '/histories', icon: <HistoryIcon/>},

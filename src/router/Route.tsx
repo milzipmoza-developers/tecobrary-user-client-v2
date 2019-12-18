@@ -5,6 +5,7 @@ import MyPage from "../pages/MyPage";
 import QrCodeReader from "../pages/QrCodeReader";
 import RentHistory from "../pages/RentHistory";
 import Search from "../pages/Search";
+import WishBook from "../pages/WishBook";
 
 const Router = () => {
     return (
@@ -15,6 +16,7 @@ const Router = () => {
                 <Route path='/rents' component={QrCodeReader}/>
                 <Route path='/mypage' component={MyPage}/>
                 <Route path='/histories' component={RentHistory}/>
+                <Route path='/wishes' component={WishBook}/>
             </Switch>
         </BrowserRouter>
     )
