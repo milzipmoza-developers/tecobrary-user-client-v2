@@ -7,7 +7,7 @@ import {BookInfoDto} from "../common/classes/BookInfoDto";
 import {findBookBySerialNumber} from "../common/controller/SerialController";
 import {IBookInfo} from "../common/types";
 import * as QrCodeParser from "../common/utils/QrCodeParser";
-import {DialogProps, SuccessDialogProps} from "../organisms/rentbook";
+import {DialogProps, ErrorDialogProps, SuccessDialogProps} from "../organisms/rentbook";
 import NoFooterTemplate from "../templates/NoFooterTemplate";
 import RentBookDialog from "../templates/rentbook/RentBookDialog";
 import TitledCard from "../templates/TitledCard";
@@ -41,10 +41,14 @@ const QrCodeReader = () => {
 
     const handleScan = (data: any) => {
         if (data && serial === -1) {
-            const jsonData = QrCodeParser.jsonParsing(data);
-            const serialObject = QrCodeParser.getSerial(jsonData);
-            const book = findBookBySerialNumber(serialObject);
-            setRentStates(serialObject.serial, book, true, true);
+            try {
+                const jsonData = QrCodeParser.jsonParsing(data);
+                const serialObject = QrCodeParser.getSerial(jsonData);
+                const book = findBookBySerialNumber(serialObject);
+                setRentStates(serialObject.serial, book, true, true);
+            } catch (e) {
+                invokeErrorDialog(e);
+            }
         }
     };
 
@@ -53,6 +57,11 @@ const QrCodeReader = () => {
         setBookInfo(book);
         setDialog(dialogStatus);
         setScanned(scanStatus);
+    };
+
+    const invokeErrorDialog = (e: Error) => {
+        setDialogProps(new ErrorDialogProps(e.message, cancelButtonHandler));
+        setDialog(true);
     };
 
     const handleError = (e: Error) => {
@@ -73,7 +82,7 @@ const QrCodeReader = () => {
         // TODO: send request to RentHistory
         history.push("/");
         // } catch (e) {
-        //     setDialogProps(new ErrorDialogProps(e.message, cancelButtonHandler));
+        //      invokeErrorDialog(e);
         // }
     };
 

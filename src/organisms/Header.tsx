@@ -9,6 +9,7 @@ interface IProps {
     imgUrl?: string;
     profileIcon: 'hidden' | 'visible';
     children?: any;
+    openDrawerHandler?: any;
 }
 
 const headerContainer: CSSProperties = {
@@ -37,7 +38,7 @@ const Header = (props: IProps) => {
     return (
         <div className={props.className} style={headerContainer}>
             <div className='header' style={headerStyle}>
-                <div className='headerTitleContainer' style={headerTitleStyle}>
+                <div className='headerTitleContainer' style={headerTitleStyle} onClick={props.openDrawerHandler}>
                     <HeaderTitle>{props.children}</HeaderTitle>
                 </div>
                 <div style={{visibility: props.profileIcon}}>

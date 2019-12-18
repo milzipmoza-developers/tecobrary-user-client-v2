@@ -4,7 +4,7 @@ import HeaderPageName from "../atoms/HeaderPageName";
 
 const HeaderTitle = ({children}: any) => {
     return (
-        <div>
+        <div style={{cursor: 'pointer'}}>
             <HeaderCalendar/>
             <HeaderPageName>{children}</HeaderPageName>
         </div>
