@@ -3,5 +3,6 @@ export type colorProps = '#3E8BFF' | '#FF0000' | '#000000' | '#00d42a' | '#fffff
 export type textAlignProps = 'center' | 'initial' | 'inherit' | 'end' | undefined;
 export type dialogMode = 'error' | 'success' | 'warning';
 
-export * from './IBookInfo'
-export * from './ISerial'
+export * from './IBookInfo';
+export * from './ISerial';
+export * from './IDrawerItem';
