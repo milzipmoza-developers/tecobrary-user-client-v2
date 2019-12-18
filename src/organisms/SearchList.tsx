@@ -24,7 +24,8 @@ const SearchList = ({children}: IProps) => {
     };
 
     const BookList = () => books.map((book: IBookInfo, i: number) => (
-        <BookElement book={book} key={i} bookLength={books.length} onClick={searchListRowClick(book.id)}/>
+        <BookElement key={i} index={i} book={book} bookLength={books.length}
+                     onClick={searchListRowClick(book.id)}/>
     ));
 
     const NoContent = () => (

@@ -1,5 +1,5 @@
-import {CSSProperties} from "react";
 import * as React from "react";
+import {CSSProperties} from "react";
 
 interface IProps {
     index?: number;
@@ -13,9 +13,7 @@ const dividerStyle: CSSProperties = {
 
 
 const Divider = (props: IProps) => (
-    !props.index || !props.lastIndex || (props.index + 1 !== props.lastIndex) ?
-        <div style={dividerStyle}/> :
-        null
+    <div style={dividerStyle}/>
 );
 
 export default Divider;

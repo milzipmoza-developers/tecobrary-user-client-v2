@@ -5,15 +5,15 @@ import SearchListElement from "./SearchListElement";
 
 interface IElementProps {
     book: IBookInfo;
-    key: number;
+    index: number;
     bookLength: number;
     onClick: any;
 }
 
-const BookElement = ({book, key, bookLength, onClick}: IElementProps) => (
-    <div key={key}>
+const BookElement = ({book, index, bookLength, onClick}: IElementProps) => (
+    <div>
         <SearchListElement id={book.id} book={book} onClick={onClick}/>
-        <Divider index={key} lastIndex={bookLength}/>
+        <Divider index={index} lastIndex={bookLength}/>
     </div>
 );
 
