@@ -1,15 +1,18 @@
-import {ISerial} from "../types";
+interface ISerialDto {
+    serialNumber: number;
+    status: boolean;
+}
 
-export class SerialDto implements ISerial {
+export class SerialDto implements ISerialDto {
     public static emptyInit = () => {
         return new SerialDto(-1, false);
     };
 
-    public serial: number;
+    public serialNumber: number;
     public status: boolean;
 
-    constructor(serial: number, status: boolean) {
-        this.serial = serial;
+    constructor(serialNumber: number, status: boolean) {
+        this.serialNumber = serialNumber;
         this.status = status;
     }
 }

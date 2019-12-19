@@ -31,7 +31,7 @@ const LibraryBookSerialCard = ({serials}: IProps) => (
                             justifyContent: 'center',
                         }}>
                             <div style={{textAlign: 'center'}}>
-                                {serial.serial}
+                                {serial.serialNumber}
                             </div>
                         </div>
                         <div style={{
