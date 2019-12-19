@@ -1,4 +1,4 @@
-import * as LibraryBookService from '../service/LibraryBookService';
+import {libraryBookService} from '../service/LibraryBookService';
 import {IBookProps} from "../types/ILibraryBook";
 
 export const search = () => {
@@ -17,17 +17,23 @@ export const search = () => {
     return dummyBookList;
 };
 
-export const findById = async (id: number) => {
-    const response = await LibraryBookService.getBookById(id);
+const findById = async (id: number) => {
+    const response = await libraryBookService.getBookById(id);
     return response.data;
 };
 
-export const getTotal = async () => {
-    const response = await LibraryBookService.getTotal();
+const getTotal = async () => {
+    const response = await libraryBookService.getTotal();
     return response.data.total;
 };
 
-export const getPageBooks = async (page: number) => {
-    const response = await LibraryBookService.getBooks(page, 12);
+const getPageBooks = async (page: number) => {
+    const response = await libraryBookService.getBooks(page, 12);
     return response.data;
+};
+
+export const libraryBookController = {
+    findById,
+    getPageBooks,
+    getTotal,
 };

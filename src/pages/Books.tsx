@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
 import {BookInfoDto} from "../common/classes/BookInfoDto";
-import {findBooksByPageAndNumber, getTotalBooks} from "../common/controller/LibraryBookController";
+import {libraryBookController} from "../common/controller/LibraryBookController";
 import BooksFooter from "../molecules/books/BooksFooter";
 import BooksTable from "../organisms/books/BooksTable";
 import DefaultTemplate from "../templates/DefaultTemplate";
@@ -12,13 +12,36 @@ const Books = () => {
     // @ts-ignore
     const [books, setBooks] = useState<BookInfoDto[]>([]);
     // @ts-ignore
-    const [total, setTotal] = useState(getTotalBooks());
+    const [total, setTotal] = useState(0);
     // @ts-ignore
     const [page, setPage] = useState(1);
 
     useEffect(() => {
-        setBooks(findBooksByPageAndNumber(page, 12))
+        getBooksTotal();
+        getBooksOnPage();
+    }, []);
+
+    useEffect(() => {
+        getBooksOnPage();
     }, [page]);
+
+    const getBooksOnPage = () => {
+        libraryBookController.getPageBooks(page).then((response: any) => {
+            setBooks(response);
+        }).catch((error: any) => {
+            // tslint:disable-next-line:no-console
+            console.error(error);
+        })
+    };
+
+    const getBooksTotal = () => {
+        libraryBookController.getTotal().then((response: any) => {
+            setTotal(response);
+        }).catch((error: any) => {
+            // tslint:disable-next-line:no-console
+            console.error(error);
+        });
+    };
 
     const pageUpButtonHandler = () => {
         if (page < total / PAGE_BOOK_NUMBERS) {

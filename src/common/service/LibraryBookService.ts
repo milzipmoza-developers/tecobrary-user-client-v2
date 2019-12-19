@@ -1,6 +1,6 @@
 import base from "./Api";
 
-export const getBooks = (page: number, num: number) => (
+const getBooks = (page: number, num: number) => (
     base().get('books', {
         params: {
             number: num,
@@ -9,15 +9,15 @@ export const getBooks = (page: number, num: number) => (
     })
 );
 
-export const getTotal = () => (
+const getTotal = () => (
     base().get('books/all')
 );
 
-export const getBookById = (bookId: number) => (
+const getBookById = (bookId: number) => (
     base().get(`books/${bookId}`)
 );
 
-export const searchBook = (keyword: string, page: number, num: number) => (
+const searchBook = (keyword: string, page: number, num: number) => (
     base().get('books/search', {
         params: {
             number: num,
@@ -26,3 +26,10 @@ export const searchBook = (keyword: string, page: number, num: number) => (
         }
     })
 );
+
+export const libraryBookService = {
+    getBookById,
+    getBooks,
+    getTotal,
+    searchBook,
+};
