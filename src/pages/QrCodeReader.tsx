@@ -4,7 +4,8 @@ import {useHistory} from 'react-router-dom';
 import QrCodeMessageHolder from "../atoms/QrCodeMessageHolder";
 import RentBookQrCodeReader from "../atoms/rentbook/RentBookQrCodeReader";
 import {BookInfoDto} from "../common/classes/BookInfoDto";
-import {findBookBySerialNumber} from "../common/controller/SerialController";
+import {rentHistoryController} from "../common/controller/RentHistoryController";
+import {serialController} from "../common/controller/SerialController";
 import {IBookInfo} from "../common/types";
 import * as QrCodeParser from "../common/utils/QrCodeParser";
 import {DialogProps, ErrorDialogProps, SuccessDialogProps} from "../organisms/rentbook";
@@ -44,10 +45,16 @@ const QrCodeReader = () => {
             try {
                 const jsonData = QrCodeParser.jsonParsing(data);
                 const serialObject = QrCodeParser.getSerial(jsonData);
-                const book = findBookBySerialNumber(serialObject);
-                setRentStates(serialObject.serial, book, true, true);
+                serialController.findBookBySerialNumber(serialObject).then((response: any) => {
+                    setRentStates(serialObject.serial, response, true, true);
+                }).catch((e) => {
+                    // tslint:disable-next-line:no-console
+                    console.log(e);
+                    invokeErrorDialog(e.message);
+                });
             } catch (e) {
-                invokeErrorDialog(e);
+                invokeErrorDialog(e.message);
+                setRentStates(-1, null, false, false);
             }
         }
     };
@@ -78,12 +85,15 @@ const QrCodeReader = () => {
     };
 
     const confirmButtonHandler = () => {
-        // try {
-        // TODO: send request to RentHistory
-        history.push("/");
-        // } catch (e) {
-        //      invokeErrorDialog(e);
-        // }
+        // TODO: user id setting from redux
+        rentHistoryController.rentBook(1, serial).then((response: any) => {
+            // tslint:disable-next-line:no-console
+            console.log(response.message, response.rentInfo.title);
+            history.push("/");
+        }).catch((e) => {
+            invokeErrorDialog(e.message);
+            setRentStates(-1, null, false, false);
+        });
     };
 
     const cancelButtonHandler = () => {
