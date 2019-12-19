@@ -1,4 +1,5 @@
 import {RentHistoryProps} from "../../organisms/renthistory/RentHistoryProps";
+import {rentHistoryService} from "../service/RentHistoryService";
 
 const ONE_MONTH = 24 * 3600 * 1000 * 30;
 
@@ -33,4 +34,13 @@ export const findRentHistoriesByUserId = (userId: number, page: number, num: num
     const offset = getOffset(page, num);
 
     return responseData.splice(offset, offset + num);
+};
+
+const rentBook = async (userId: number, serial: number) => {
+    const response = await rentHistoryService.rentBook(userId, serial);
+    return response.data;
+};
+
+export const rentHistoryController = {
+    rentBook,
 };
