@@ -2,8 +2,8 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import {BookInfoDto} from "../common/classes/BookInfoDto";
 import {SerialDto} from "../common/classes/SerialDto";
-import * as LibraryBookController from "../common/controller/LibraryBookController";
-import * as SerialController from "../common/controller/SerialController"
+import {libraryBookController} from "../common/controller/LibraryBookController";
+import {serialController} from "../common/controller/SerialController";
 import DefaultTemplate from "../templates/DefaultTemplate";
 import LibraryBookCommentsCard from "../templates/librarybook/LibraryBookCommentsCard";
 import LibraryBookInfoCard from "../templates/librarybook/LibraryBookInfoCard";
@@ -15,11 +15,21 @@ const LibraryBook = ({match}: any) => {
     const [serials, setSerials] = useState<SerialDto[]>([]);
 
     useEffect(() => {
-        setBook(LibraryBookController.findById(bookId));
-    }, [bookId]);
+        libraryBookController.findById(bookId).then((bookInfo: BookInfoDto) => {
+            setBook(bookInfo);
+        }).catch((error: any) => {
+            // tslint:disable-next-line:no-console
+            console.error(error);
+        });
+    }, []);
 
     useEffect(() => {
-        setSerials(SerialController.findSerialsByBookId(bookId));
+        serialController.findSerialsByBookId(bookId).then((response: any) => {
+            setSerials(response);
+        }).catch((error: any) => {
+            // tslint:disable-next-line:no-console
+            console.error(error);
+        })
     }, [bookId]);
 
     return (
