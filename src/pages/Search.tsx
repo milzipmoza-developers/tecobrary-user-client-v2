@@ -11,7 +11,7 @@ const Search = () => {
     return (
         <DefaultTemplate title='도서 검색' loggedIn={true} profileIcon='visible'>
             <SearchComponent isSearchPage={true}/>
-            <SearchList>{bookList}</SearchList>
+            <SearchList bookList={bookList}/>
         </DefaultTemplate>
     );
 };
