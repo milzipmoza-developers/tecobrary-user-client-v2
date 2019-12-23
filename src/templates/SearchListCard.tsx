@@ -1,16 +1,16 @@
 import * as React from "react";
 import SearchList from "../organisms/SearchList";
-import TitledCard from "./TitledCard";
 
 interface IProps {
     bookList: any;
+    itemOnClick?: any;
 }
 
-const SearchListCard = ({bookList}: IProps) => {
+const SearchListCard = ({bookList, itemOnClick}: IProps) => {
     return (
-        <TitledCard elevation={false}>
-            <SearchList>{bookList}</SearchList>
-        </TitledCard>
+        <div style={{paddingRight: '4px', paddingLeft: '4px'}}>
+            <SearchList bookList={bookList} onClick={itemOnClick}/>
+        </div>
     );
 };
 
