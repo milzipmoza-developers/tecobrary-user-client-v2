@@ -1,5 +1,6 @@
-import {CSSProperties} from "react";
 import * as React from "react";
+import {CSSProperties} from "react";
+import {SearchContext} from 'src/common/contexts/SearchContext';
 
 interface IProps {
     disabled: boolean;
@@ -17,9 +18,18 @@ const inputStyle: CSSProperties = {
 };
 
 const SearchInput = (props: IProps) => {
+
     return (
-        <input type="text" disabled={props.disabled} autoFocus={!props.disabled} style={inputStyle}
-               placeholder="검색어를 입력하세요."/>
+        <SearchContext.Consumer>
+            {({keyword, onInputChange, onKeyUp}) => {
+                return (
+                    <input type="text" disabled={props.disabled} autoFocus={!props.disabled} style={inputStyle}
+                           placeholder="검색어를 입력하세요." value={keyword}
+                           onChange={props.disabled ? undefined : onInputChange}
+                           onKeyUp={props.disabled ? undefined : onKeyUp}/>
+                )
+            }}
+        </SearchContext.Consumer>
     );
 };
 
