@@ -1,6 +1,10 @@
+import {naverApiService} from "../service/NaverApiService";
 import {IBookProps} from "../types/ILibraryBook";
 
-export const searchBook = () => {
+const searchBook = () => {
+    // tslint:disable-next-line:no-console
+    console.log('dd');
+
     const dummyBookList: IBookProps[] = [
         {id: '1', title: '객체 지향의 사실과 오해', author: '조영호', publisher: '우아한'},
         {id: '2', title: 'JPA 프로그래밍', author: '김영한', publisher: '우아한형'},
@@ -14,4 +18,29 @@ export const searchBook = () => {
     ];
 
     return dummyBookList;
+};
+
+const search = async (keyword: string, page: number, num: number) => {
+    try {
+        const response = await naverApiService.search(keyword, page, num);
+        const books: any[] = [];
+        response.data.forEach((book: IWishBook) => {
+            books.push({
+                author: book.author,
+                description: book.description.replace(/(<([^>]+)>)/ig, ""),
+                image: book.image,
+                isbn: book.isbn,
+                publisher: book.publisher,
+                title: book.title.replace(/(<([^>]+)>)/ig, ""),
+            })
+        });
+        return books;
+    } catch (e) {
+        return e;
+    }
+};
+
+export const naverApiController = {
+    search,
+    searchBook,
 };
