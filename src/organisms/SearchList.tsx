@@ -1,11 +1,11 @@
 import * as React from "react";
-import {CSSProperties, useState} from "react";
-import {useHistory} from 'react-router-dom';
+import {CSSProperties} from "react";
 import {IBookInfo} from "../common/types";
 import BookElement from "../molecules/BookElement";
 
 interface IProps {
-    children?: any;
+    bookList?: any;
+    onClick?: any;
 }
 
 const noContentStyle: CSSProperties = {
@@ -14,18 +14,10 @@ const noContentStyle: CSSProperties = {
     textAlign: 'center'
 };
 
-const SearchList = ({children}: IProps) => {
-    const [books] = useState(children);
-
-    const history = useHistory();
-
-    const searchListRowClick = (bookId: number) => () => {
-        history.push(`/books/${bookId}`)
-    };
-
-    const BookList = () => books.map((book: IBookInfo, i: number) => (
-        <BookElement key={i} index={i} book={book} bookLength={books.length}
-                     onClick={searchListRowClick(book.id)}/>
+const SearchList = ({bookList, onClick}: IProps) => {
+    const BookList = () => bookList.map((book: IBookInfo, i: number) => (
+        <BookElement key={i} index={i} book={book} bookLength={bookList.length}
+                     onClick={onClick(i)}/>
     ));
 
     const NoContent = () => (
@@ -33,7 +25,7 @@ const SearchList = ({children}: IProps) => {
     );
 
     return (
-        books.length !== 0 ?
+        bookList.length !== 0 ?
             <BookList/> :
             <NoContent/>
     )
