@@ -17,7 +17,7 @@ const noContentStyle: CSSProperties = {
 const SearchList = ({bookList, onClick}: IProps) => {
     const BookList = () => bookList.map((book: IBookInfo, i: number) => (
         <BookElement key={i} index={i} book={book} bookLength={bookList.length}
-                     onClick={onClick(i)}/>
+                     onClick={onClick ? onClick(i): null}/>
     ));
 
     const NoContent = () => (
