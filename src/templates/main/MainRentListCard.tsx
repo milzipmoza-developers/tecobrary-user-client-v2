@@ -22,7 +22,7 @@ const MainRentListCard = ({rents, loggedIn}: IProps) => {
 
     return (
         <div>
-            {loggedIn ? <Card/> : null}
+            {loggedIn && rents.length !== 0 ? <Card/> : null}
         </div>
     );
 };
