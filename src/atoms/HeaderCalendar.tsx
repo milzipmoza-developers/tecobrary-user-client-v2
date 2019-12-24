@@ -16,7 +16,7 @@ const calendarStyle: CSSProperties = {
 const HeaderCalendar = () => {
     return (
         <div style={calendarStyle}>
-            {DateParser.formatDate(Date.now(), false)}
+            {DateParser.formatDate(Date.now(), false, true)}
         </div>
     );
 };

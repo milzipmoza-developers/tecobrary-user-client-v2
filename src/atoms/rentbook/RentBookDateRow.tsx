@@ -19,7 +19,7 @@ const RentBookDateRow = () => (
     <div style={{paddingTop: '4px'}}>
         <div style={nameTextStyle}>대여일</div>
         <div style={dateTextStyle}>
-            {DateParser.formatDate(Date.now(), true)}
+            {DateParser.formatDate(Date.now(), true, true)}
         </div>
     </div>
 );
