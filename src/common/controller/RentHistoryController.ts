@@ -36,11 +36,23 @@ export const findRentHistoriesByUserId = (userId: number, page: number, num: num
     return responseData.splice(offset, offset + num);
 };
 
+const findRentListByUserId = async (userId: number) => {
+    const response = await rentHistoryService.getRentListByUserId(userId);
+    return response.data;
+};
+
 const rentBook = async (userId: number, serial: number) => {
     const response = await rentHistoryService.rentBook(userId, serial);
     return response.data;
 };
 
+const returnBook = async (userId: number, serial: number) => {
+    const response = await rentHistoryService.returnBook(userId, serial);
+    return response.data;
+};
+
 export const rentHistoryController = {
+    findRentListByUserId,
     rentBook,
+    returnBook,
 };
