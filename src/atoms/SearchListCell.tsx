@@ -19,8 +19,8 @@ const tableCellStyle = (fontWeight: FontWeightProperty, width: string, fontSize?
 const textBoxStyle = {
     height: '24px',
     lineHeight: '24px',
+    marginRight: '8px',
     overflow: 'hidden',
-    width: '100%',
 };
 
 const SearchListCell = (props: IProps) => {
