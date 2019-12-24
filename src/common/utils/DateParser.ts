@@ -7,6 +7,10 @@ export const formatDate = (date: number, yearMode: boolean, dayMode?: boolean) =
     return `${year}${todayMonth}월 ${todayDate}일 ${day}`
 };
 
+export const formatPeriod = (date: string) => {
+    return `${Math.round((Date.now() - Date.parse(date)) / (24 * 60 * 60 * 1000))}일`
+};
+
 const getDayName = (day: number) => {
     const array = ['일', '월', '화', '수', '목', '금', '토'];
     return array[day % 6];
