@@ -3,8 +3,8 @@ import {useEffect, useState} from "react";
 import Divider from "../atoms/Divider";
 import {rentHistoryController} from "../common/controller/RentHistoryController";
 import {IRentElement} from "../common/types/IRentElement";
-import RentListBody from "../molecules/rentlist/RentListBody";
-import RentListHeader from "../molecules/rentlist/RentListHeader";
+import RentListBody from "../organisms/rentlist/RentListBody";
+import RentListHeader from "../organisms/rentlist/RentListHeader";
 import DefaultTemplate from "../templates/DefaultTemplate";
 import './rentlist.css';
 
