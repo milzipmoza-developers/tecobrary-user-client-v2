@@ -14,7 +14,7 @@ const titleStyle: CSSProperties = {
 };
 
 const RentBookInfoTitle = ({children}: IProps) => (
-    <div style={{paddingTop: '4px'}}>
+    <div style={{paddingTop: '4px', paddingBottom: '4px'}}>
         <div style={titleStyle}>{children}</div>
     </div>
 );

@@ -5,7 +5,7 @@ interface IProps {
 }
 
 const RentBookInfoFrame = ({children}: IProps) => (
-    <div style={{flex: '2', display: 'flex', flexDirection: 'column'}}>
+    <div style={{flex: '2', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
         {children}
     </div>
 );
