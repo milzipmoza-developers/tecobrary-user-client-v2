@@ -1,5 +1,6 @@
 import * as React from "react";
 import {CSSProperties} from "react";
+import {useHistory} from 'react-router-dom';
 import NotLoginIcon from '../atoms/NotLoginIcon';
 
 const iconStyle: CSSProperties = {
@@ -8,9 +9,11 @@ const iconStyle: CSSProperties = {
 };
 
 const LoginButton = () => {
+    const history = useHistory();
+
     const loginButtonClickHandler = (e: any) => {
         e.preventDefault();
-        alert("login button clicked")
+        history.push("/authenticate")
     };
 
     return (
