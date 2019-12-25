@@ -6,7 +6,7 @@ import {IRentElement} from "../common/types/IRentElement";
 import RentListBody from "../organisms/rentlist/RentListBody";
 import RentListHeader from "../organisms/rentlist/RentListHeader";
 import DefaultTemplate from "../templates/DefaultTemplate";
-import './rentlist.css';
+import './css/rentlist.css';
 
 const RentList = () => {
     const [rents, setRents] = useState<IRentElement[]>([]);
