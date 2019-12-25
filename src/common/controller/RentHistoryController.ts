@@ -46,6 +46,11 @@ const rentBook = async (userId: number, serial: number) => {
     return response.data;
 };
 
+const findReturnListByUserId = async (userId: number) => {
+    const response = await rentHistoryService.getReturnListByUserId(userId);
+    return response.data;
+};
+
 const returnBook = async (userId: number, serial: number) => {
     const response = await rentHistoryService.returnBook(userId, serial);
     return response.data;
@@ -53,6 +58,7 @@ const returnBook = async (userId: number, serial: number) => {
 
 export const rentHistoryController = {
     findRentListByUserId,
+    findReturnListByUserId,
     rentBook,
     returnBook,
 };
