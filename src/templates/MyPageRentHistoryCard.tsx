@@ -13,7 +13,7 @@ interface IProps {
 const MyPageRentHistoryCard = ({rentHistories}: IProps) => {
     return (
         <TitledCard title={RENT_HISTORY_CARD_TITLE} elevation={true}>
-            <RentHistoryList rentHistories={rentHistories}/>
+            <RentHistoryList rentHistories={rentHistories.slice(rentHistories.length - 3)}/>
             <CardTextButton to='/histories' cursor='pointer' color={TEXT_BUTTON_BLUE}>
                 더보기
             </CardTextButton>
