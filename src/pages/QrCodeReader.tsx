@@ -1,6 +1,5 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
-import {useHistory} from 'react-router-dom';
 import QrCodeMessageHolder from "../atoms/QrCodeMessageHolder";
 import RentBookQrCodeReader from "../atoms/rentbook/RentBookQrCodeReader";
 import {BookInfoDto} from "../common/classes/BookInfoDto";
@@ -17,8 +16,6 @@ const CAMERA_GRANT_ERROR_MESSAGE = '카메라 권한에 접근하지 못하였�
 const QR_READER_ERROR_MESSAGE = 'QR 코드 리더기에 문제가 발생하였습니다.';
 
 const QrCodeReader = () => {
-    const history = useHistory();
-
     const [dialog, setDialog] = useState(false);
     const [scanned, setScanned] = useState(false);
     const [serial, setSerial] = useState(-1);
@@ -40,20 +37,15 @@ const QrCodeReader = () => {
         setErrorMessage(errorMessage);
     }, [error]);
 
-    const handleScan = (data: any) => {
+    const handleScan = async (data: any) => {
         if (data && serial === -1) {
             try {
                 const jsonData = QrCodeParser.jsonParsing(data);
                 const serialObject = QrCodeParser.getSerial(jsonData);
-                serialController.findBookBySerialNumber(serialObject).then((response: any) => {
-                    setRentStates(serialObject.serial, response, true, true);
-                }).catch((e) => {
-                    // tslint:disable-next-line:no-console
-                    console.log(e);
-                    invokeErrorDialog(e.message);
-                });
+                const response = await serialController.findBookBySerialNumber(serialObject);
+                setRentStates(serialObject.serial, response, true, true);
             } catch (e) {
-                invokeErrorDialog(e.message);
+                invokeErrorDialog(e.message ? e.message : e.response.data.message);
                 setRentStates(-1, null, false, false);
             }
         }
@@ -66,8 +58,8 @@ const QrCodeReader = () => {
         setScanned(scanStatus);
     };
 
-    const invokeErrorDialog = (e: Error) => {
-        setDialogProps(new ErrorDialogProps(e.message, cancelButtonHandler));
+    const invokeErrorDialog = (message: string) => {
+        setDialogProps(new ErrorDialogProps(message, cancelButtonHandler));
         setDialog(true);
     };
 
@@ -84,16 +76,18 @@ const QrCodeReader = () => {
         setError(true);
     };
 
-    const confirmButtonHandler = () => {
+    const confirmButtonHandler = async () => {
         // TODO: user id setting from redux
-        rentHistoryController.rentBook(1, serial).then((response: any) => {
+        try {
+            const response = await rentHistoryController.rentBook(1, serial);
             // tslint:disable-next-line:no-console
             console.log(response.message, response.rentInfo.title);
-            history.push("/");
-        }).catch((e) => {
-            invokeErrorDialog(e.message);
+        } catch (e) {
+            // tslint:disable-next-line:no-console
+            console.log(e.response);
+            invokeErrorDialog(e.response.data.message);
             setRentStates(-1, null, false, false);
-        });
+        }
     };
 
     const cancelButtonHandler = () => {
