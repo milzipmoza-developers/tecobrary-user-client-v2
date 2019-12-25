@@ -2,16 +2,10 @@ import * as React from "react";
 import {CSSProperties} from "react";
 import HistoryInfoElement from "../molecules/HistoryInfoElement";
 import HistoryButtonElement from "./HistoryButtonElement";
-
-interface IHistory {
-    title: string;
-    createdAt: number;
-    deletedAt: number;
-    likeStatus: boolean;
-}
+import {IRentHistoryProps} from "./renthistory/IRentHistoryProps";
 
 interface IProps {
-    rentHistory: IHistory
+    rentHistory: IRentHistoryProps
 }
 const historyInfoRowStyle: CSSProperties = {
     display: 'flex',
@@ -24,7 +18,7 @@ const historyInfoRowStyle: CSSProperties = {
 const HistoryInfoRow = ({rentHistory}: IProps) => {
     return (
         <div style={historyInfoRowStyle}>
-            <HistoryInfoElement startDate={rentHistory.createdAt} endDate={rentHistory.deletedAt}>
+            <HistoryInfoElement startDate={rentHistory.rentDate} endDate={rentHistory.returnDate}>
                 {rentHistory.title}
             </HistoryInfoElement>
             <HistoryButtonElement likeStatus={rentHistory.likeStatus}/>
