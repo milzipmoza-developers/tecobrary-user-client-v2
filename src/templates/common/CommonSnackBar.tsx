@@ -17,6 +17,7 @@ const CommonSnackBar = ({variant, open, message, handleClose}: IProps) => {
                 vertical: 'bottom',
             }}
             open={open}
+            autoHideDuration={2000}
             onClose={handleClose}
         >
             <CommonSnackBarContent
