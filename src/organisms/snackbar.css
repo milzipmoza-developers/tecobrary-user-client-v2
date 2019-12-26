@@ -1,0 +1,19 @@
+.MuiSnackbarContent-root {
+    color: black !important;
+}
+
+.success {
+    background-color: #5D9D52 !important;
+}
+
+.error {
+    background-color: #C33F38 !important;
+}
+
+.warning {
+    background-color: #F3A33A !important;
+}
+
+.info {
+    background-color: #9CCAF5 !important;
+}
