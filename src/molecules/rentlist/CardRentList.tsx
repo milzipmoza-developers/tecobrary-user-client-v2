@@ -11,7 +11,7 @@ interface IProps {
 const rowStyle: CSSProperties = {
     display: 'flex',
     flexDirection: 'row',
-    fontSize: '12px',
+    fontSize: '16px',
     fontWeight: 'lighter',
     paddingBottom: '8px',
     paddingTop: '8px',
@@ -25,6 +25,7 @@ const CardRentList = ({rent}: IProps) => (
             <div style={{
                 alignSelf: 'center',
                 flex: '4',
+                fontWeight: 'normal',
                 height: '25px',
                 lineHeight: '25px',
                 overflow: 'hidden',
