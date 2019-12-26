@@ -1,13 +1,18 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
+import {SyntheticEvent, useEffect, useState} from "react";
 import {rentHistoryController} from "../common/controller/RentHistoryController";
 import {ILoginInfo} from "../common/types/ILoginInfo";
 import {RentHistoryProps} from "../organisms/renthistory/RentHistoryProps";
 import RentHistoryList from "../organisms/RentHistoryList";
+import CommonSnackBar from "../templates/common/CommonSnackBar";
 import DefaultTemplate from "../templates/DefaultTemplate";
 
 const RentHistory = ({isLoggedIn, user, token}: ILoginInfo) => {
     const [rentHistories, setRentHistories] = useState<RentHistoryProps[]>([]);
+
+    const [open, setOpen] = useState(false);
+    const [variant, setVariant] = useState('info');
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
         setRentHistoriesFromServer();
@@ -21,10 +26,23 @@ const RentHistory = ({isLoggedIn, user, token}: ILoginInfo) => {
                     setRentHistories(response);
                 })
                 .catch((e) => {
-                    // tslint:disable-next-line:no-console
-                    console.log(e.response.data.message);
+                    snackBarBuilder('error', e.response.data.message);
                 })
         }
+    };
+
+    const snackBarBuilder = (vrt: string, msg: string) => {
+        setVariant(vrt);
+        setMessage(msg);
+        setOpen(true);
+    };
+
+    const handleClose = (event?: SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
     };
 
     return (
@@ -32,6 +50,8 @@ const RentHistory = ({isLoggedIn, user, token}: ILoginInfo) => {
                          imgUrl={user ? user.avatarUrl : undefined}>
             <div style={{height: '3vh'}}/>
             <RentHistoryList rentHistories={rentHistories}/>
+            <CommonSnackBar variant={variant} message={message}
+                            open={open} handleClose={handleClose}/>
         </DefaultTemplate>
     );
 };

@@ -1,6 +1,5 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
-import {useHistory} from 'react-router-dom';
+import {SyntheticEvent, useEffect, useState} from "react";
 import {WishBookDto} from "../common/classes/WishBookDto";
 import {SearchContext} from '../common/contexts/SearchContext';
 import {naverApiController} from "../common/controller/NaverApiController";
@@ -8,6 +7,7 @@ import {wishBookController} from "../common/controller/WishBookController";
 import {IBookProps} from "../common/types/ILibraryBook";
 import DefaultCard from "../organisms/DefaultCard";
 import SearchBar from "../organisms/SearchBar";
+import CommonSnackBar from "../templates/common/CommonSnackBar";
 import DefaultTemplate from "../templates/DefaultTemplate";
 import SearchListCard from "../templates/SearchListCard";
 import WishBookRequestDialog from "../templates/WishBookRequestDialog";
@@ -16,9 +16,11 @@ const WishBook = ({isLoggedIn, user, token}: any) => {
     const [bookList, setBookList] = useState<IBookProps[]>([]);
     const [keyword, setKeyword] = useState('');
     const [selectedBook, setSelectedBook] = useState<any>();
-    const [open, setOpen] = useState(false);
+    const [openDialog, setOpenDialog] = useState(false);
 
-    const history = useHistory();
+    const [open, setOpen] = useState(false);
+    const [message, setMessage] = useState('');
+    const [variant, setVariant] = useState('info');
 
     useEffect(() => {
         setBookList(bookList);
@@ -48,7 +50,7 @@ const WishBook = ({isLoggedIn, user, token}: any) => {
     };
 
     const handleOpen = () => {
-        setOpen(true);
+        setOpenDialog(true);
     };
 
     const handleConfirmButton = async (e: any) => {
@@ -56,17 +58,30 @@ const WishBook = ({isLoggedIn, user, token}: any) => {
         const {image, title, author, publisher, isbn, description} = selectedBook;
         try {
             const wishbook = await wishBookController.createWishBook(new WishBookDto(image, title, author, publisher, isbn, description, 1));
-            // tslint:disable-next-line:no-console
-            console.log('wishbook', wishbook);
-            history.push("/");
+            snackBarBuilder('success', `${wishbook.title} 이 희망도서에 등록되었습니다.`);
+            setOpenDialog(false);
         } catch (e) {
-            // tslint:disable-next-line:no-console
-            console.log(e);
+            snackBarBuilder('warning', e.response.data.message);
+            setOpenDialog(false);
         }
     };
 
-    const handleClose = () => {
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
+    };
+
+    const handleClose = (event?: SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
         setOpen(false);
+    };
+
+    const snackBarBuilder = (vrt: string, msg: string) => {
+        setVariant(vrt);
+        setMessage(msg);
+        setOpen(true);
     };
 
     return (
@@ -81,7 +96,10 @@ const WishBook = ({isLoggedIn, user, token}: any) => {
                 </div>
             </DefaultCard>
             <SearchListCard bookList={bookList} itemOnClick={itemOnClick}/>
-            <WishBookRequestDialog selectedBook={selectedBook} open={open} closeOnClick={handleClose} confirmOnClick={handleConfirmButton}/>
+            <WishBookRequestDialog selectedBook={selectedBook} open={openDialog} closeOnClick={handleCloseDialog}
+                                   confirmOnClick={handleConfirmButton}/>
+            <CommonSnackBar variant={variant} message={message}
+                            open={open} handleClose={handleClose}/>
         </DefaultTemplate>
     );
 };
