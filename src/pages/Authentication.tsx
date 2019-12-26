@@ -12,7 +12,7 @@ const Authentication = ({isLoggedIn, location, login}: any) => {
     const history = useHistory();
 
     useEffect(() => {
-        if (!isLoggedIn) {
+        if (isLoggedIn) {
             history.push("/");
             return;
         }
