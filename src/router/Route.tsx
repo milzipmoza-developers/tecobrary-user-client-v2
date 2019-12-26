@@ -8,11 +8,11 @@ import {
     MyPagePage,
     QrCodeReaderPage,
     RentHistoryPage,
-    SearchPage
+    SearchPage,
+    WishBookPage
 } from "../pages";
 import Recommend from "../pages/Recommend";
 import RentList from "../pages/RentList";
-import WishBook from "../pages/WishBook";
 
 const Router = () => {
     return (
@@ -25,7 +25,7 @@ const Router = () => {
                 <Route path='/histories' component={RentHistoryPage}/>
                 <Route path='/books/:bookId' component={LibraryBookPage}/>
                 <Route path='/books' component={BooksPage}/>
-                <Route path='/wishes' component={WishBook}/>
+                <Route path='/wishes' component={WishBookPage}/>
                 <Route path='/recommends' component={Recommend}/>
                 <Route path='/rentlists' component={RentList}/>
                 <Route path='/authenticate' component={AuthenticationPage}/>

@@ -12,7 +12,7 @@ import DefaultTemplate from "../templates/DefaultTemplate";
 import SearchListCard from "../templates/SearchListCard";
 import WishBookRequestDialog from "../templates/WishBookRequestDialog";
 
-const WishBook = () => {
+const WishBook = ({isLoggedIn, user, token}: any) => {
     const [bookList, setBookList] = useState<IBookProps[]>([]);
     const [keyword, setKeyword] = useState('');
     const [selectedBook, setSelectedBook] = useState<any>();
@@ -70,9 +70,9 @@ const WishBook = () => {
     };
 
     return (
-        <DefaultTemplate title='희망도서 신청' loggedIn={true}
+        <DefaultTemplate title='희망도서 신청' loggedIn={isLoggedIn}
                          profileIcon='visible'
-                         imgUrl='https://avatars0.githubusercontent.com/u/52121827?s=460&v=4'>
+                         imgUrl={user ? user.avatarUrl : undefined}>
             <DefaultCard elevation={true}>
                 <div style={{marginTop: '8px', marginBottom: '8px'}}>
                     <SearchContext.Provider value={{keyword, onInputChange, onKeyUp}}>

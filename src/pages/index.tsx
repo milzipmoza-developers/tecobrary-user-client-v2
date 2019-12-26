@@ -9,6 +9,7 @@ import MyPage from "./MyPage";
 import QrCodeReader from "./QrCodeReader";
 import RentHistory from "./RentHistory";
 import Search from "./Search";
+import WishBook from "./WishBook";
 
 const mapStateToProps = (state: any) => {
     return state.auth;
@@ -27,3 +28,4 @@ export const MyPagePage = connect(mapStateToProps, mapDispatchToProps)(MyPage);
 export const RentHistoryPage = connect(mapStateToProps, null)(RentHistory);
 export const LibraryBookPage = connect(mapStateToProps, null)(LibraryBook);
 export const BooksPage = connect(mapStateToProps, null)(Books);
+export const WishBookPage = connect(mapStateToProps, null)(WishBook);
