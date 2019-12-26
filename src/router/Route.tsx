@@ -1,6 +1,6 @@
 import * as React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import Authentication from "../pages/Authentication";
+import {AuthenticationPage} from "../pages";
 import Books from "../pages/Books";
 import LibraryBook from "../pages/LibraryBook";
 import Main from "../pages/Main";
@@ -26,7 +26,7 @@ const Router = () => {
                 <Route path='/wishes' component={WishBook}/>
                 <Route path='/recommends' component={Recommend}/>
                 <Route path='/rentlists' component={RentList}/>
-                <Route path='/authenticate' component={Authentication}/>
+                <Route path='/authenticate' component={AuthenticationPage}/>
             </Switch>
         </BrowserRouter>
     )
