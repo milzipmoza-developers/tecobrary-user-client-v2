@@ -7,11 +7,13 @@ import MainRentListCard from "../templates/main/MainRentListCard";
 import MainRecommendCard from "../templates/MainRecommendCard";
 import SearchComponent from "../templates/SearchComponent";
 
-const Main = () => {
-    // @ts-ignore
-    const [isLoggedIn, logIn] = useState(false);
-    // @ts-ignore
-    const [imgUrl, setImgUrl] = useState<any>(null);
+interface IProps {
+    state: any;
+    isLoggedIn: any,
+    user: any,
+}
+
+const Main = ({isLoggedIn, user}: IProps) => {
     const [rents, setRents] = useState<IRentElement[]>([]);
 
     useEffect(() => {
@@ -19,21 +21,25 @@ const Main = () => {
     }, []);
 
     const setRentsFromServer = () => {
-        rentHistoryController.findRentListByUserId(12)
-            .then((list: any) => {
-                setRents(list);
-            }).catch((e: any) => {
-            // tslint:disable-next-line:no-console
-            console.log(e.response.data);
-        });
+        if (isLoggedIn) {
+            rentHistoryController
+                .findRentListByUserId(user.id)
+                .then((list: any) => {
+                    setRents(list);
+                })
+                .catch((e: any) => {
+                    // tslint:disable-next-line:no-console
+                    console.log(e.response.data);
+                });
+        }
     };
 
     return (
         <DefaultTemplate title='대시보드' loggedIn={isLoggedIn}
                          profileIcon='visible'
-                         imgUrl={imgUrl}>
+                         imgUrl={user ? user.avatarUrl : null}>
             <SearchComponent isSearchPage={false}/>
-            <MainRentListCard loggedIn={isLoggedIn} rents={rents}/>
+            <MainRentListCard loggedIn={isLoggedIn ? isLoggedIn : false} rents={rents}/>
             <MainRecommendCard/>
         </DefaultTemplate>
     )
