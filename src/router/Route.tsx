@@ -1,8 +1,15 @@
 import * as React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {AuthenticationPage, MainPage, MyPagePage, QrCodeReaderPage, RentHistoryPage, SearchPage} from "../pages";
+import {
+    AuthenticationPage,
+    LibraryBookPage,
+    MainPage,
+    MyPagePage,
+    QrCodeReaderPage,
+    RentHistoryPage,
+    SearchPage
+} from "../pages";
 import Books from "../pages/Books";
-import LibraryBook from "../pages/LibraryBook";
 import Recommend from "../pages/Recommend";
 import RentList from "../pages/RentList";
 import WishBook from "../pages/WishBook";
@@ -16,7 +23,7 @@ const Router = () => {
                 <Route path='/rents' component={QrCodeReaderPage}/>
                 <Route path='/mypage' component={MyPagePage}/>
                 <Route path='/histories' component={RentHistoryPage}/>
-                <Route path='/books/:bookId' component={LibraryBook}/>
+                <Route path='/books/:bookId' component={LibraryBookPage}/>
                 <Route path='/books' component={Books}/>
                 <Route path='/wishes' component={WishBook}/>
                 <Route path='/recommends' component={Recommend}/>

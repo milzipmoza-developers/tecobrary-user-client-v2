@@ -9,7 +9,7 @@ import LibraryBookCommentsCard from "../templates/librarybook/LibraryBookComment
 import LibraryBookInfoCard from "../templates/librarybook/LibraryBookInfoCard";
 import LibraryBookSerialCard from "../templates/librarybook/LibraryBookSerialCard";
 
-const LibraryBook = ({match}: any) => {
+const LibraryBook = ({match, isLoggedIn, user}: any) => {
     const [bookId] = useState(match.params.bookId);
     const [book, setBook] = useState<BookInfoDto>(BookInfoDto.emptyInit());
     const [serials, setSerials] = useState<SerialDto[]>([]);
@@ -33,9 +33,9 @@ const LibraryBook = ({match}: any) => {
     }, [bookId]);
 
     return (
-        <DefaultTemplate title='도서 정보' loggedIn={true}
-                         profileIcon='visible'
-                         imgUrl='https://avatars0.githubusercontent.com/u/52121827?s=460&v=4'>
+        <DefaultTemplate title='도서 정보' loggedIn={isLoggedIn}
+                         profileIcon={user ? user.avatarUrl : undefined}
+                         imgUrl={user ? user.avatarUrl : undefined}>
             <LibraryBookInfoCard book={book}/>
             <LibraryBookSerialCard serials={serials}/>
             <LibraryBookCommentsCard/>
