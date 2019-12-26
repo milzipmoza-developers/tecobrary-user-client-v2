@@ -47,9 +47,6 @@ const drawerItems: IDrawerItem[] = [
 ];
 
 const DefaultTemplate = (props: IProps) => {
-    const [login] = useState(props.loggedIn);
-    const [img] = useState(props.imgUrl);
-
     const [drawer, setDrawer] = useState(false);
 
     const openDrawerHandler = () => {
@@ -68,8 +65,8 @@ const DefaultTemplate = (props: IProps) => {
         <div id='template' className='defaultTemplate' style={templateStyle}>
             <Header
                 className='templateHeader'
-                loggedIn={login}
-                imgUrl={img}
+                loggedIn={props.loggedIn}
+                imgUrl={props.imgUrl}
                 profileIcon={props.profileIcon}
                 openDrawerHandler={openDrawerHandler}>
                 {props.title}
