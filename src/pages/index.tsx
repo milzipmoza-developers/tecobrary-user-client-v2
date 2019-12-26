@@ -8,6 +8,7 @@ import Main from "./Main";
 import MyPage from "./MyPage";
 import QrCodeReader from "./QrCodeReader";
 import RentHistory from "./RentHistory";
+import RentList from "./RentList";
 import Search from "./Search";
 import WishBook from "./WishBook";
 
@@ -29,3 +30,4 @@ export const RentHistoryPage = connect(mapStateToProps, null)(RentHistory);
 export const LibraryBookPage = connect(mapStateToProps, null)(LibraryBook);
 export const BooksPage = connect(mapStateToProps, null)(Books);
 export const WishBookPage = connect(mapStateToProps, null)(WishBook);
+export const RentListPage = connect(mapStateToProps, null)(RentList);

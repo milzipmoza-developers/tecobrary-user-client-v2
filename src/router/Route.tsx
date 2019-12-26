@@ -8,11 +8,11 @@ import {
     MyPagePage,
     QrCodeReaderPage,
     RentHistoryPage,
+    RentListPage,
     SearchPage,
     WishBookPage
 } from "../pages";
 import Recommend from "../pages/Recommend";
-import RentList from "../pages/RentList";
 
 const Router = () => {
     return (
@@ -27,7 +27,7 @@ const Router = () => {
                 <Route path='/books' component={BooksPage}/>
                 <Route path='/wishes' component={WishBookPage}/>
                 <Route path='/recommends' component={Recommend}/>
-                <Route path='/rentlists' component={RentList}/>
+                <Route path='/rentlists' component={RentListPage}/>
                 <Route path='/authenticate' component={AuthenticationPage}/>
             </Switch>
         </BrowserRouter>

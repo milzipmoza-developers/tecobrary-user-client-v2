@@ -8,7 +8,7 @@ import RentListHeader from "../organisms/rentlist/RentListHeader";
 import DefaultTemplate from "../templates/DefaultTemplate";
 import './css/rentlist.css';
 
-const RentList = () => {
+const RentList = ({isLoggedIn, user, token}: any) => {
     const [rents, setRents] = useState<IRentElement[]>([]);
 
     useEffect(() => {
@@ -16,34 +16,40 @@ const RentList = () => {
     }, []);
 
     const setRentsFromServer = () => {
-        rentHistoryController.findRentListByUserId(12)
-            .then((list: any) => {
-                setRents(list);
-            }).catch((e: any) => {
-            // tslint:disable-next-line:no-console
-            console.log(e.response.data);
-        });
+        if (isLoggedIn && user && token) {
+            rentHistoryController
+                .findRentListByUserId(user.id)
+                .then((list: any) => {
+                    setRents(list);
+                })
+                .catch((e: any) => {
+                    // tslint:disable-next-line:no-console
+                    console.log(e.response.data);
+                });
+        }
     };
 
     const returnButtonHandler = (id: number) => async (e: any) => {
-        e.preventDefault();
-        try {
-            const data = await rentHistoryController.returnBook(12, id);
-            // tslint:disable-next-line:no-console
-            console.log(data.message);
-            // tslint:disable-next-line:no-console
-            console.log(data.returnInfo);
-            setRentsFromServer();
-        } catch (e) {
-            // tslint:disable-next-line:no-console
-            console.log(e.response.data);
+        if (user) {
+            e.preventDefault();
+            try {
+                const data = await rentHistoryController.returnBook(user.id, id);
+                // tslint:disable-next-line:no-console
+                console.log(data.message);
+                // tslint:disable-next-line:no-console
+                console.log(data.returnInfo);
+                setRentsFromServer();
+            } catch (e) {
+                // tslint:disable-next-line:no-console
+                console.log(e.response.data);
+            }
         }
     };
 
     return (
-        <DefaultTemplate title='대여 현황' loggedIn={true}
+        <DefaultTemplate title='대여 현황' loggedIn={isLoggedIn}
                          profileIcon='visible'
-                         imgUrl='https://avatars0.githubusercontent.com/u/52121827?s=460&v=4'>
+                         imgUrl={user ? user.avatarUrl : undefined}>
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 <RentListHeader/>
                 <Divider/>
