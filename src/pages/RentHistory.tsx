@@ -1,11 +1,12 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
 import {rentHistoryController} from "../common/controller/RentHistoryController";
+import {ILoginInfo} from "../common/types/ILoginInfo";
 import {RentHistoryProps} from "../organisms/renthistory/RentHistoryProps";
 import RentHistoryList from "../organisms/RentHistoryList";
 import DefaultTemplate from "../templates/DefaultTemplate";
 
-const RentHistory = () => {
+const RentHistory = ({isLoggedIn, user, token}: ILoginInfo) => {
     const [rentHistories, setRentHistories] = useState<RentHistoryProps[]>([]);
 
     useEffect(() => {
@@ -13,14 +14,17 @@ const RentHistory = () => {
     }, []);
 
     const setRentHistoriesFromServer = () => {
-        rentHistoryController
-            .findReturnListByUserId(1)
-            .then((response: any) => {
-                setRentHistories(response);
-            }).catch((e) => {
-                // tslint:disable-next-line:no-console
-                console.log(e.response.data.message);
-            })
+        if (isLoggedIn && user && token) {
+            rentHistoryController
+                .findReturnListByUserId(user.id)
+                .then((response: any) => {
+                    setRentHistories(response);
+                })
+                .catch((e) => {
+                    // tslint:disable-next-line:no-console
+                    console.log(e.response.data.message);
+                })
+        }
     };
 
     return (

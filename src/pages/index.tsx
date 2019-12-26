@@ -5,6 +5,7 @@ import Authentication from "./Authentication";
 import Main from "./Main";
 import MyPage from "./MyPage";
 import QrCodeReader from "./QrCodeReader";
+import RentHistory from "./RentHistory";
 import Search from "./Search";
 
 const mapStateToProps = (state: any) => {
@@ -21,3 +22,4 @@ export const AuthenticationPage = connect(mapStateToProps, mapDispatchToProps)(A
 export const SearchPage = connect(mapStateToProps, null)(Search);
 export const QrCodeReaderPage = connect(mapStateToProps, null)(QrCodeReader);
 export const MyPagePage = connect(mapStateToProps, mapDispatchToProps)(MyPage);
+export const RentHistoryPage = connect(mapStateToProps, null)(RentHistory);
