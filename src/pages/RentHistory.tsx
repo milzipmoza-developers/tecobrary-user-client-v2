@@ -28,7 +28,8 @@ const RentHistory = ({isLoggedIn, user, token}: ILoginInfo) => {
     };
 
     return (
-        <DefaultTemplate title='대여 기록' loggedIn={true} profileIcon='visible'>
+        <DefaultTemplate title='대여 기록' loggedIn={isLoggedIn} profileIcon='visible'
+                         imgUrl={user ? user.avatarUrl : undefined}>
             <div style={{height: '3vh'}}/>
             <RentHistoryList rentHistories={rentHistories}/>
         </DefaultTemplate>
