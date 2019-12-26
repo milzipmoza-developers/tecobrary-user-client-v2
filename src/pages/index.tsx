@@ -3,6 +3,7 @@ import {authAction} from "../common/actions/authAction";
 import {IUserInfo} from "../common/types/IUserInfo";
 import Authentication from "./Authentication";
 import Main from "./Main";
+import Search from "./Search";
 
 const mapStateToProps = (state: any) => {
     return state.auth;
@@ -15,3 +16,4 @@ const mapDispatchToProps = (dispatch: any) => ({
 
 export const MainPage = connect(mapStateToProps, null)(Main);
 export const AuthenticationPage = connect(mapStateToProps, mapDispatchToProps)(Authentication);
+export const SearchPage = connect(mapStateToProps, null)(Search);
