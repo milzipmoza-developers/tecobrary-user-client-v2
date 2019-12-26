@@ -1,5 +1,6 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
+import {SyntheticEvent, useEffect, useState} from "react";
+import {useHistory} from 'react-router-dom';
 import QrCodeMessageHolder from "../atoms/QrCodeMessageHolder";
 import RentBookQrCodeReader from "../atoms/rentbook/RentBookQrCodeReader";
 import {BookInfoDto} from "../common/classes/BookInfoDto";
@@ -9,6 +10,7 @@ import {IBookInfo} from "../common/types";
 import {ILoginInfo} from "../common/types/ILoginInfo";
 import * as QrCodeParser from "../common/utils/QrCodeParser";
 import {DialogProps, ErrorDialogProps, SuccessDialogProps} from "../organisms/rentbook";
+import CommonSnackBar from "../templates/common/CommonSnackBar";
 import NoFooterTemplate from "../templates/NoFooterTemplate";
 import RentBookDialog from "../templates/rentbook/RentBookDialog";
 import TitledCard from "../templates/TitledCard";
@@ -24,6 +26,18 @@ const QrCodeReader = ({isLoggedIn, user, token}: ILoginInfo) => {
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [dialogProps, setDialogProps] = useState<DialogProps>();
+
+    const [message, setMessage] = useState('');
+    const [open, setOpen] = useState(false);
+    const [variant, setVariant] = useState('info');
+
+    const history = useHistory();
+
+    useEffect(() => {
+        if (!user || !isLoggedIn || !token) {
+            history.push("/");
+        }
+    });
 
     useEffect(() => {
         if (scanned) {
@@ -59,8 +73,8 @@ const QrCodeReader = ({isLoggedIn, user, token}: ILoginInfo) => {
         setScanned(scanStatus);
     };
 
-    const invokeErrorDialog = (message: string) => {
-        setDialogProps(new ErrorDialogProps(message, cancelButtonHandler));
+    const invokeErrorDialog = (eMessage: string) => {
+        setDialogProps(new ErrorDialogProps(eMessage, cancelButtonHandler));
         setDialog(true);
     };
 
@@ -72,22 +86,21 @@ const QrCodeReader = ({isLoggedIn, user, token}: ILoginInfo) => {
         invokeQrReaderError(QR_READER_ERROR_MESSAGE);
     };
 
-    const invokeQrReaderError = (message: string) => {
-        setErrorMessage(message);
+    const invokeQrReaderError = (eMessage: string) => {
+        setErrorMessage(eMessage);
         setError(true);
     };
 
     const confirmButtonHandler = async () => {
-        // TODO: user id setting from redux
-        try {
-            const response = await rentHistoryController.rentBook(1, serial);
-            // tslint:disable-next-line:no-console
-            console.log(response.message, response.rentInfo.title);
-        } catch (e) {
-            // tslint:disable-next-line:no-console
-            console.log(e.response);
-            invokeErrorDialog(e.response.data.message);
-            setRentStates(-1, null, false, false);
+        if (isLoggedIn && user) {
+            try {
+                const response = await rentHistoryController.rentBook(user.id, serial);
+                snackBarBuilder('success', `${response.rentInfo.title} ${response.message}`);
+                setRentStates(-1, null, false, false);
+            } catch (e) {
+                snackBarBuilder('error', e.response.data.message);
+                setDialog(false);
+            }
         }
     };
 
@@ -95,8 +108,23 @@ const QrCodeReader = ({isLoggedIn, user, token}: ILoginInfo) => {
         setRentStates(-1, null, false, false);
     };
 
+    const snackBarBuilder = (vrt: string, msg: string) => {
+        setVariant(vrt);
+        setMessage(msg);
+        setOpen(true);
+    };
+
+    const handleClose = (event?: SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+
     return (
-        <NoFooterTemplate title='대여하기' loggedIn={isLoggedIn} profileIcon='visible' imgUrl={user ? user.avatarUrl : undefined}>
+        <NoFooterTemplate title='대여하기' loggedIn={isLoggedIn} profileIcon='visible'
+                          imgUrl={user ? user.avatarUrl : undefined}>
             <TitledCard>
                 <RentBookQrCodeReader handleScan={handleScan} handleError={handleError}/>
                 <div>
@@ -104,6 +132,7 @@ const QrCodeReader = ({isLoggedIn, user, token}: ILoginInfo) => {
                 </div>
             </TitledCard>
             {dialog ? <RentBookDialog dialogProps={dialogProps}/> : null}
+            <CommonSnackBar variant={variant} open={open} message={message} handleClose={handleClose}/>
         </NoFooterTemplate>
     )
 };
