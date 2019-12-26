@@ -1,7 +1,7 @@
 import * as React from "react";
 
 interface IProps {
-    children: string;
+    children: any;
     onClick: any;
 }
 
@@ -12,6 +12,8 @@ const buttonStyle = {
     color: 'white',
     cursor: 'pointer',
     height: '36px',
+    marginLeft: '12px',
+    marginRight: '12px',
     width: '48px',
 };
 const SmallButton = ({children, onClick}: IProps) => (

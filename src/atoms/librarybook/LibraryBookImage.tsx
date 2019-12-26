@@ -6,7 +6,14 @@ interface IProps {
 }
 
 const LibraryBookImage = ({image}: IProps) => (
-    <div style={{flex: 1, margin: '6px', borderRadius: '10px', border: `1px solid ${BORDER_DEFAULT_GRAY}`, display: 'flex', flexDirection: 'column'}}>
+    <div style={{
+        border: `1px solid ${BORDER_DEFAULT_GRAY}`,
+        borderRadius: '10px',
+        display: 'flex',
+        flex: 1,
+        flexDirection: 'column',
+        margin: '6px',
+    }}>
         <img src={image} style={{width: '100%', borderRadius: '10px'}}/>
     </div>
 );
