@@ -34,7 +34,7 @@ const LibraryBook = ({match, isLoggedIn, user}: any) => {
 
     return (
         <DefaultTemplate title='도서 정보' loggedIn={isLoggedIn}
-                         profileIcon={user ? user.avatarUrl : undefined}
+                         profileIcon='visible'
                          imgUrl={user ? user.avatarUrl : undefined}>
             <LibraryBookInfoCard book={book}/>
             <LibraryBookSerialCard serials={serials}/>

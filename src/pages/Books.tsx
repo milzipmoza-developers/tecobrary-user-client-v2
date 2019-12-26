@@ -8,7 +8,7 @@ import DefaultTemplate from "../templates/DefaultTemplate";
 
 const PAGE_BOOK_NUMBERS = 12;
 
-const Books = () => {
+const Books = ({isLoggedIn, user}: any) => {
     // @ts-ignore
     const [books, setBooks] = useState<BookInfoDto[]>([]);
     // @ts-ignore
@@ -26,21 +26,27 @@ const Books = () => {
     }, [page]);
 
     const getBooksOnPage = () => {
-        libraryBookController.getPageBooks(page).then((response: any) => {
-            setBooks(response);
-        }).catch((error: any) => {
-            // tslint:disable-next-line:no-console
-            console.error(error);
-        })
+        libraryBookController
+            .getPageBooks(page)
+            .then((response: any) => {
+                setBooks(response);
+            })
+            .catch((error: any) => {
+                // tslint:disable-next-line:no-console
+                console.error(error);
+            })
     };
 
     const getBooksTotal = () => {
-        libraryBookController.getTotal().then((response: any) => {
-            setTotal(response);
-        }).catch((error: any) => {
-            // tslint:disable-next-line:no-console
-            console.error(error);
-        });
+        libraryBookController
+            .getTotal()
+            .then((response: any) => {
+                setTotal(response);
+            })
+            .catch((error: any) => {
+                // tslint:disable-next-line:no-console
+                console.error(error);
+            });
     };
 
     const pageUpButtonHandler = () => {
@@ -56,9 +62,9 @@ const Books = () => {
     };
 
     return (
-        <DefaultTemplate title='장서 목록' loggedIn={true}
+        <DefaultTemplate title='장서 목록' loggedIn={isLoggedIn}
                          profileIcon='visible'
-                         imgUrl='https://avatars0.githubusercontent.com/u/52121827?s=460&v=4'>
+                         imgUrl={user ? user.avatarUrl : undefined}>
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 <BooksTable books={books}/>
                 <BooksFooter upOnClick={pageUpButtonHandler} downOnClick={pageDownButtonHandler}/>
