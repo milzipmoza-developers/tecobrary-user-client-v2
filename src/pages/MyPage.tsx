@@ -1,5 +1,6 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
+import {useHistory} from 'react-router-dom';
 import {rentHistoryController} from "../common/controller/RentHistoryController";
 import {RentHistoryProps} from "../organisms/renthistory/RentHistoryProps";
 import DefaultTemplate from "../templates/DefaultTemplate";
@@ -7,41 +8,36 @@ import MyPageBadgeCard from "../templates/MyPageBadgeCard";
 import MyPageRentHistoryCard from "../templates/MyPageRentHistoryCard";
 import MyPageUserInfoCard from "../templates/MyPageUserInfoCard";
 
-const UserInfo = {
-    authorization: 'KING',
-    avatarUrl: 'https://avatars0.githubusercontent.com/u/52121827?s=460&v=4',
-    email: 'thedevluffy@gmail.com',
-    loggedIn: true,
-    name: '개발왕루피',
-    numeric: 1,
-};
-
-const MyPage = () => {
+const MyPage = ({isLoggedIn, user, token, logout}: any) => {
     const [rentHistories, setRentHistories] = useState<RentHistoryProps[]>([]);
+    const history = useHistory();
 
     useEffect(() => {
-        setRentHistoriesFromServer();
+            setRentHistoriesFromServer();
     }, []);
 
     const setRentHistoriesFromServer = () => {
+        if (isLoggedIn && user) {
         rentHistoryController
-            .findReturnListByUserId(1)
+            .findReturnListByUserId(user.id)
             .then((response: any) => {
                 setRentHistories(response);
-            }).catch((e) => {
-            // tslint:disable-next-line:no-console
-            console.log(e.response.data.message);
-        })
+            })
+            .catch((e) => {
+                // tslint:disable-next-line:no-console
+                console.log(e.response.data.message);
+            });
+        }
+    };
+
+    const logoutButtonHandler = () => {
+        logout();
+        history.push('/');
     };
 
     return (
-        <DefaultTemplate title='마이페이지' loggedIn={UserInfo.loggedIn} profileIcon='hidden'>
-            <MyPageUserInfoCard
-                name={UserInfo.name}
-                email={UserInfo.email}
-                avatarUrl={UserInfo.avatarUrl}
-                verified={UserInfo.authorization !== 'NONE'}
-                numeric={UserInfo.numeric} />
+        <DefaultTemplate title='마이페이지' loggedIn={isLoggedIn} profileIcon='hidden'>
+            <MyPageUserInfoCard user={user ? user : null} logoutButtonHandler={logoutButtonHandler}/>
             <MyPageRentHistoryCard
                 rentHistories={rentHistories}/>
             <MyPageBadgeCard/>

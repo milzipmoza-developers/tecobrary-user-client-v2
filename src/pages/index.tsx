@@ -3,6 +3,7 @@ import {authAction} from "../common/actions/authAction";
 import {IUserInfo} from "../common/types/IUserInfo";
 import Authentication from "./Authentication";
 import Main from "./Main";
+import MyPage from "./MyPage";
 import QrCodeReader from "./QrCodeReader";
 import Search from "./Search";
 
@@ -19,3 +20,4 @@ export const MainPage = connect(mapStateToProps, null)(Main);
 export const AuthenticationPage = connect(mapStateToProps, mapDispatchToProps)(Authentication);
 export const SearchPage = connect(mapStateToProps, null)(Search);
 export const QrCodeReaderPage = connect(mapStateToProps, null)(QrCodeReader);
+export const MyPagePage = connect(mapStateToProps, mapDispatchToProps)(MyPage);

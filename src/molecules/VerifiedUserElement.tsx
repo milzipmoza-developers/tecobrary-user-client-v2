@@ -1,16 +1,24 @@
-import * as React from 'react';
+import * as React from "react";
+import {useEffect, useState} from "react";
 import NonVerifiedUserIcon from "../atoms/NonVerifiedUserIcon";
 import VerifiedUserIcon from "../atoms/VerifiedUserIcon";
 
 interface IProps {
-    verified: boolean;
-    numeric?: number;
+    authorization: string
 }
 
-const VerifiedUserElement = ({verified, numeric}: IProps) => {
+const VerifiedUserElement = ({authorization}: IProps) => {
+    const [verified, setVerified] = useState(false);
+
+    useEffect(() => {
+        if (authorization !== 'NONE') {
+            setVerified(true);
+        }
+    }, []);
+
     return (
         <div>
-            {verified ? <VerifiedUserIcon numeric={numeric}/> : <NonVerifiedUserIcon/>}
+            {verified ? <VerifiedUserIcon auth={authorization}/> : <NonVerifiedUserIcon/>}
         </div>
     )
 };
