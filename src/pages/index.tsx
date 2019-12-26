@@ -3,6 +3,7 @@ import {authAction} from "../common/actions/authAction";
 import {IUserInfo} from "../common/types/IUserInfo";
 import Authentication from "./Authentication";
 import Main from "./Main";
+import QrCodeReader from "./QrCodeReader";
 import Search from "./Search";
 
 const mapStateToProps = (state: any) => {
@@ -17,3 +18,4 @@ const mapDispatchToProps = (dispatch: any) => ({
 export const MainPage = connect(mapStateToProps, null)(Main);
 export const AuthenticationPage = connect(mapStateToProps, mapDispatchToProps)(Authentication);
 export const SearchPage = connect(mapStateToProps, null)(Search);
+export const QrCodeReaderPage = connect(mapStateToProps, null)(QrCodeReader);

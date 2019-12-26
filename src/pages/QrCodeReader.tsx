@@ -6,6 +6,7 @@ import {BookInfoDto} from "../common/classes/BookInfoDto";
 import {rentHistoryController} from "../common/controller/RentHistoryController";
 import {serialController} from "../common/controller/SerialController";
 import {IBookInfo} from "../common/types";
+import {ILoginInfo} from "../common/types/ILoginInfo";
 import * as QrCodeParser from "../common/utils/QrCodeParser";
 import {DialogProps, ErrorDialogProps, SuccessDialogProps} from "../organisms/rentbook";
 import NoFooterTemplate from "../templates/NoFooterTemplate";
@@ -15,7 +16,7 @@ import TitledCard from "../templates/TitledCard";
 const CAMERA_GRANT_ERROR_MESSAGE = '카메라 권한에 접근하지 못하였습니다.';
 const QR_READER_ERROR_MESSAGE = 'QR 코드 리더기에 문제가 발생하였습니다.';
 
-const QrCodeReader = () => {
+const QrCodeReader = ({isLoggedIn, user, token}: ILoginInfo) => {
     const [dialog, setDialog] = useState(false);
     const [scanned, setScanned] = useState(false);
     const [serial, setSerial] = useState(-1);
@@ -95,7 +96,7 @@ const QrCodeReader = () => {
     };
 
     return (
-        <NoFooterTemplate title='대여하기' loggedIn={false} profileIcon='visible'>
+        <NoFooterTemplate title='대여하기' loggedIn={isLoggedIn} profileIcon='visible' imgUrl={user ? user.avatarUrl : undefined}>
             <TitledCard>
                 <RentBookQrCodeReader handleScan={handleScan} handleError={handleError}/>
                 <div>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {CSSProperties, useState} from "react";
+import {CSSProperties} from "react";
 import Header from "../organisms/Header";
 import NoFooterBody from "../organisms/NoFooterBody";
 
@@ -23,15 +23,12 @@ const templateStyle: CSSProperties = {
 };
 
 const NoFooterTemplate = (props: IProps) => {
-    const [login] = useState(props.loggedIn);
-    const [img] = useState(props.imgUrl);
-
     return (
         <div className='noFooterTemplate' style={templateStyle}>
             <Header
                 className='templateHeader'
-                loggedIn={login}
-                imgUrl={img}
+                loggedIn={props.loggedIn}
+                imgUrl={props.imgUrl}
                 profileIcon={props.profileIcon}>
                 {props.title}
             </Header>
