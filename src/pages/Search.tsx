@@ -15,7 +15,7 @@ const Search = ({isLoggedIn, user}: IProps) => {
     const [bookList] = useState(LibraryBookController.search());
 
     return (
-        <DefaultTemplate title='도서 검색' loggedIn={isLoggedIn} profileIcon='visible' imgUrl={user.avatarUrl}>
+        <DefaultTemplate title='도서 검색' loggedIn={isLoggedIn} profileIcon='visible' imgUrl={user ? user.avatarUrl : undefined}>
             <SearchComponent isSearchPage={true}/>
             <SearchList bookList={bookList}/>
         </DefaultTemplate>
