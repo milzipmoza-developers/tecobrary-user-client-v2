@@ -1,15 +1,19 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
+import {SyntheticEvent, useEffect, useState} from "react";
 import Divider from "../atoms/Divider";
 import {rentHistoryController} from "../common/controller/RentHistoryController";
 import {IRentElement} from "../common/types/IRentElement";
 import RentListBody from "../organisms/rentlist/RentListBody";
 import RentListHeader from "../organisms/rentlist/RentListHeader";
+import CommonSnackBar from "../templates/common/CommonSnackBar";
 import DefaultTemplate from "../templates/DefaultTemplate";
 import './css/rentlist.css';
 
 const RentList = ({isLoggedIn, user, token}: any) => {
     const [rents, setRents] = useState<IRentElement[]>([]);
+    const [open, setOpen] = useState(false);
+    const [message, setMessage] = useState('');
+    const [variant, setVariant] = useState('info');
 
     useEffect(() => {
         setRentsFromServer();
@@ -23,8 +27,7 @@ const RentList = ({isLoggedIn, user, token}: any) => {
                     setRents(list);
                 })
                 .catch((e: any) => {
-                    // tslint:disable-next-line:no-console
-                    console.log(e.response.data);
+                    snackBarBuilder('error', e.response.data.message);
                 });
         }
     };
@@ -34,16 +37,30 @@ const RentList = ({isLoggedIn, user, token}: any) => {
             e.preventDefault();
             try {
                 const data = await rentHistoryController.returnBook(user.id, id);
-                // tslint:disable-next-line:no-console
-                console.log(data.message);
-                // tslint:disable-next-line:no-console
-                console.log(data.returnInfo);
+                setMessage(data.message);
+                setVariant('info');
+                setOpen(true);
                 setRentsFromServer();
             } catch (e) {
-                // tslint:disable-next-line:no-console
-                console.log(e.response.data);
+                setMessage(e.response.data.message);
+                setVariant('error');
+                setOpen(true);
             }
         }
+    };
+
+    const handleClose = (event?: SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+
+    const snackBarBuilder = (vrt: string, msg: string) => {
+        setVariant(vrt);
+        setMessage(msg);
+        setOpen(true);
     };
 
     return (
@@ -55,6 +72,8 @@ const RentList = ({isLoggedIn, user, token}: any) => {
                 <Divider/>
                 <RentListBody rents={rents} returnButtonHandler={returnButtonHandler}/>
             </div>
+            <CommonSnackBar variant={variant} message={message}
+                            open={open} handleClose={handleClose}/>
         </DefaultTemplate>
     );
 };
