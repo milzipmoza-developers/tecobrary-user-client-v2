@@ -1,7 +1,8 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
+import {SyntheticEvent, useEffect, useState} from "react";
 import {rentHistoryController} from "../common/controller/RentHistoryController";
 import {IRentElement} from "../common/types/IRentElement";
+import CommonSnackBar from "../templates/common/CommonSnackBar";
 import DefaultTemplate from "../templates/DefaultTemplate";
 import MainRentListCard from "../templates/main/MainRentListCard";
 import MainRecommendCard from "../templates/MainRecommendCard";
@@ -15,6 +16,9 @@ interface IProps {
 
 const Main = ({isLoggedIn, user}: IProps) => {
     const [rents, setRents] = useState<IRentElement[]>([]);
+    const [open, setOpen] = useState(false);
+    const [variant, setVariant] = useState('info');
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
         setRentsFromServer();
@@ -28,10 +32,23 @@ const Main = ({isLoggedIn, user}: IProps) => {
                     setRents(list);
                 })
                 .catch((e: any) => {
-                    // tslint:disable-next-line:no-console
-                    console.log(e.response.data);
+                    snackBarBuilder('error', e.response.data.message);
                 });
         }
+    };
+
+    const snackBarBuilder = (vrt: string, msg: string) => {
+        setVariant(vrt);
+        setMessage(msg);
+        setOpen(true);
+    };
+
+    const handleClose = (event?: SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
     };
 
     return (
@@ -41,6 +58,8 @@ const Main = ({isLoggedIn, user}: IProps) => {
             <SearchComponent isSearchPage={false}/>
             <MainRentListCard loggedIn={isLoggedIn ? isLoggedIn : false} rents={rents}/>
             <MainRecommendCard/>
+            <CommonSnackBar variant={variant} message={message}
+                            open={open} handleClose={handleClose}/>
         </DefaultTemplate>
     )
 };
